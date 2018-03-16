@@ -13,7 +13,6 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { Observable } from "rxjs";
 import { Asset } from "../../models/asset";
 import { AddAssetPage } from "../add-asset/add-asset";
-import { ViewAssetPage } from "../view-asset/view-asset";
 
 @IonicPage()
 @Component({

@@ -9,10 +9,8 @@ import {
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { Observable } from "rxjs";
 import { Asset } from "../../models/asset";
-import { AssetsPage } from "../assets/assets";
 import { storage } from "firebase";
 import { Camera, CameraOptions } from "@ionic-native/camera";
-import { firebaseConfig } from "../../app/app.module";
 import { Vibration } from "@ionic-native/vibration";
 
 @IonicPage()

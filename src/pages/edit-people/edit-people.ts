@@ -191,7 +191,7 @@ else {
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
         correctOrientation: true,
-        
+        allowEdit: true
       };
 
       const result = await this.camera.getPicture(options);
@@ -213,6 +213,7 @@ else {
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
         correctOrientation: true,
+        allowEdit: true,
         sourceType: 2
       };
 

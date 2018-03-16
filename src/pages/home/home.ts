@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
-import { NgModel } from '@angular/forms';
 import { ViewPeoplePage } from '../view-people/view-people';
 
 @Component({

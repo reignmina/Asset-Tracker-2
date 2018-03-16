@@ -10,10 +10,8 @@ import {
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { Observable } from "rxjs";
 import { People } from "../../models/people";
-import { PeoplePage } from "../people/people";
 import { storage } from "firebase";
 import { Camera, CameraOptions } from "@ionic-native/camera";
-import { firebaseConfig } from "../../app/app.module";
 import { Vibration } from "@ionic-native/vibration";
 
 /**
@@ -138,6 +136,7 @@ export class AddPeoplePage {
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
         correctOrientation: true,
+        allowEdit: true
         
       };
 
@@ -160,6 +159,7 @@ export class AddPeoplePage {
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
         correctOrientation: true,
+        allowEdit: true,
         sourceType: 2
       };
 
