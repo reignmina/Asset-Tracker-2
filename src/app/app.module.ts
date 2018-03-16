@@ -5,7 +5,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth'
-import { Camera } from '@ionic-native/camera';
+import { DataProvider } from '../providers/data/data';
+
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,19 +30,18 @@ import { AddAssetPage } from '../pages/add-asset/add-asset';
 import { AddTagPage } from '../pages/add-tag/add-tag'; 
 import { EditPeoplePage } from '../pages/edit-people/edit-people';
 import { ViewAssetPage } from "../pages/view-asset/view-asset";
-
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { RegisterUserPage } from '../pages/register-user/register-user';
 import { ConfCredsPage } from '../pages/conf-creds/conf-creds';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
-import { DataProvider } from '../providers/data/data';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule} from '@angular/http';
 import { Vibration } from '@ionic-native/vibration';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
-  
+import { Camera } from '@ionic-native/camera';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCcKH_nF8-a509y7alvz69L1tuVCO6nkHI",
@@ -127,7 +128,8 @@ export const firebaseConfig = {
     Camera,
     DataProvider,
     Vibration,
-    FingerprintAIO
+    FingerprintAIO,
+    PhotoViewer
   ]
 })
 export class AppModule {}

@@ -8,8 +8,7 @@
 <ion-content padding align='center'>
 
   <ion-list no-line *ngFor='let p of persons'>
-    
-      <img [src]='p.img' width="350" height="350">
+      <img [src]='p.img' width="350" height="350" (click)='viewImg(p.img)'>
     <h1>{{p.firstname}} {{p.middlename}} {{p.lastname}}</h1>
     <p>{{p.eid}}</p>
   </ion-list>

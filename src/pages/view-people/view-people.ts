@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
-
+import { PhotoViewer } from '@ionic-native/photo-v  iewer';
 
 @IonicPage()
 @Component({
@@ -10,12 +10,16 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 export class ViewPeoplePage {
   persons: Array<{firstname: string, middlename: string, lastname: string, eid: string, img: string }>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController, private viewPic: PhotoViewer) {
 
     this.persons =[
       {firstname: navParams.get('firstname'), middlename: navParams.get('middlename'), lastname: navParams.get('lastname'),
       eid: navParams.get('eid'), img: navParams.get('img')}
     ]
+  }
+
+  viewImg(picture){
+    this.viewPic.show(picture);
   }
 
   ionViewDidLoad() {

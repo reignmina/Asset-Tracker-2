@@ -41,11 +41,11 @@ export class LoginPage {
     this.pushPage = RegisterUserPage;
   }
 
-  loginer() {
+  loginest() {
     this.navCtrl.setRoot(HomePage);
   }
 
-  async loginest() {
+  async loginer() {
     await this.afAuth.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
     );
