@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
-import { PhotoViewer } from '@ionic-native/photo-v  iewer';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @IonicPage()
 @Component({
