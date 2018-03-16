@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Change Password</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+
+<ion-content padding align='center'>
+    <form>
+        <ion-item (submit)="updatePass(Pass, newPass, newPassConf)">
+          <ion-label floating>Enter Old Password</ion-label>
+          <ion-input name="first" type="password" [(ngModel)]="Pass"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Enter New Password</ion-label>
+          <ion-input name="second" type="password" [(ngModel)]="newPass"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+            <ion-label floating>Confirm New Password</ion-label>
+            <ion-input name="third" type="password" [(ngModel)]="newPassConf"></ion-input>
+          </ion-item>
+          
+      </form>
+      <button ion-button color="dark" (click)="updatePass(Pass, newPass, newPassConf)">Change Password</button>
+
+</ion-content>

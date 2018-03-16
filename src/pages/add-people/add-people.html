@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Person</ion-title>
+    <ion-buttons end>
+    <button ion-button icon-only clear (click)='this.addPerson(peopleaf)'>
+      <ion-icon name="checkmark" color='light'>
+       </ion-icon>
+    </button>  
+  </ion-buttons> 
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-slides pager>
+
+        <ion-slide style="background-color: grey" >
+            <div (click)='takePic()'>
+          <button ion-button  >
+            <ion-icon name="camera" color='dark'></ion-icon>
+              Take a Picture
+          </button>
+          </div>
+          <br>
+          <i><b>or</b></i>
+          <br>
+          <br>
+          <div (click)='getPic()'> 
+            <button ion-button  >
+              <ion-icon name="images" color='dark'></ion-icon>
+                Get from Gallery
+            </button>
+          </div>
+        </ion-slide>
+      
+        <ion-slide *ngIf='img == undefined'>
+          <img src='assets/imgs/logo.png'>
+        </ion-slide>
+
+        <ion-slide *ngIf='img'>
+          <img [src]='img'>
+          <ion-fab right top>
+            <button ion-fab color="danger" (click)='showConfirm()'>
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-fab>
+        </ion-slide>
+      </ion-slides>
+
+    <ion-item>
+      <ion-label stacked>First Name</ion-label>
+      <ion-input clearInput type="text" placeholder='First Name' [(ngModel)]="peopleaf.firstname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Middle Name</ion-label>
+      <ion-input type="text" placeholder='Middle Name' [(ngModel)]="peopleaf.middlename"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Last Name</ion-label>
+      <ion-input type="text" placeholder='Last Name' [(ngModel)]="peopleaf.lastname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Accenture EID</ion-label>
+      <ion-input type="text" placeholder='EID' [(ngModel)]="peopleaf.eid"></ion-input>
+    </ion-item>
+
+</ion-content>

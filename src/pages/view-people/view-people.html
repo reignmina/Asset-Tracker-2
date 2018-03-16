@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar *ngFor='let p of persons'>
+      <ion-title>Viewing User {{p.firstname}} {{p.lastname}} </ion-title>
+    </ion-navbar>
+  </ion-header>
+ 
+
+<ion-content padding align='center'>
+
+  <ion-list no-line *ngFor='let p of persons'>
+    
+      <img [src]='p.img' width="350" height="350">
+    <h1>{{p.firstname}} {{p.middlename}} {{p.lastname}}</h1>
+    <p>{{p.eid}}</p>
+  </ion-list>
+
+</ion-content>

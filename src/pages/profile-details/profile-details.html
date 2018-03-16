@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile Details </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<div *ngIf="afAuth.authState | async as authUser">
+  <h1>{{authUser.email}}</h1>
+  <pre>{{authUser | json}}</pre>
+</div>
+
+<ion-content padding align="center">
+  <ion-list no-line *ngFor="let d of details">
+     
+    <ion-item>
+        <ion-thumbnail><img [src]='d.img' width='550' height='550'></ion-thumbnail>
+      <h1>{{d.email}}</h1>
+      <h1>{{d.name}}</h1>
+      <h1>{{d.pid}}</h1>
+      <h1>{{d.uid}}</h1>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button color="dark" (click)="changePass()">Change Password</button>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar *ngFor='let a of assets'>
+      <ion-title>Viewing Asset {{p.firstname}} {{p.lastname}} </ion-title>
+    </ion-navbar>
+  </ion-header>
+ 
+
+<ion-content padding align='center'>
+
+  <ion-list no-line *ngFor='let a of assets'>
+    <ion-thumbnail item-start>
+      <img [src]='p.img' width="350" height="350">
+    </ion-thumbnail>
+    <h1>{{p.firstname}} {{p.middlename}} {{p.lastname}}</h1>
+    <p>{{p.eid}}</p>
+  </ion-list>
+
+</ion-content>

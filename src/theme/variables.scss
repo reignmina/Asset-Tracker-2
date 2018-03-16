@@ -1,0 +1,22 @@
+$font-path: "../assets/fonts";
+$app-direction: ltr;
+
+@import "ionic.globals";
+@import "ionic.theme.default";
+@import "ionic.ionicons";
+@import "roboto";
+@import "noto-sans";
+
+$colors: (
+  primary:    #6495ed,
+  secondary:  #000000,
+  danger:     #f53d3d,
+  light:      #ffffff,
+  dark:       #222,
+  success:    #00ff00
+);
+
+//Header
+$toolbar-background: color($colors, secondary);
+$header: color($colors, secondary);
+

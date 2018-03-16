@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-buttons end>
+        <button ion-button icon-only clear menuToggle='right'>
+          <ion-icon name="search" color='light'>
+          </ion-icon>
+        </button>
+      </ion-buttons>
+
+    <ion-title >Dashboard</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding (onLoad)="presentLoading()">
+
+  <ion-list no-lines>
+    <ion-item *ngFor="let item of items | async"> 
+        <button ion-button block large (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
+            {{item.First_name}} {{item.Middle_name}} {{item.Last_name}}
+        </button>
+      </ion-item>
+  </ion-list>
+
+</ion-content>

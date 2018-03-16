@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>All Assets</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+<ion-list *ngFor="let a of assets | async">
+          <button ion-item clear (click)='viewAsset(p.First_name, p.Middle_name, p.Last_name, p.EID, p.img)'>
+        <ion-thumbnail item-start><img [src]="a.img"></ion-thumbnail>
+        <h2>{{a.Type}}</h2>
+      <p>{{a.Number}}</p>
+      <p>{{a.Serial}}</p>
+        </button>
+  </ion-list>
+
+  <ion-fab right bottom>
+      <button ion-fab color="secondary" [navPush]="pushPage"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+</ion-content>

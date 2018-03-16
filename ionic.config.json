@@ -1,0 +1,8 @@
+{
+  "name": "AssetTracker_clone",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add an Asset</ion-title>
+    <ion-buttons end>
+    <button ion-button icon-only clear (click)='this.addAsset(assetDb)'>
+      <ion-icon name="checkmark" color='light'>
+       </ion-icon>
+    </button>  
+  </ion-buttons> 
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-slides pager>
+
+        <ion-slide style="background-color: grey" (click)='takePic()'>
+            <button ion-button icon-only clear >
+                <ion-icon name="camera" color='dark'></ion-icon>
+                 </button>
+        </ion-slide>
+      
+        <ion-slide>
+            <img src='assets/imgs/men.jpg'>
+            <ion-fab right top>
+              <button ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>
+            </ion-fab>
+        </ion-slide>
+      </ion-slides>
+
+    <ion-item>
+      <ion-label stacked>Type</ion-label>
+      <ion-input  type="text" placeholder='Model' [(ngModel)]="assetDb.Type"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Model</ion-label>
+      <ion-input type="text" placeholder='Model' [(ngModel)]="assetDb.Model"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>OS</ion-label>
+      <ion-input type="text" placeholder='OS' [(ngModel)]="assetDb.OS"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Memory</ion-label>
+      <ion-input type="text" placeholder='Memory' [(ngModel)]="assetDb.Memory"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Hard Disk Capacity</ion-label>
+      <ion-input  type="text" placeholder='Capacity' [(ngModel)]="assetDb.HDD"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Number Tag</ion-label>
+      <ion-input type="text" placeholder='Number Tag' [(ngModel)]="assetDb.Number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Serial Number</ion-label>
+      <ion-input type="text" placeholder='Serial Number' [(ngModel)]="assetDb.Serial"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Project</ion-label>
+      <ion-input type="text" placeholder='Project' [(ngModel)]="assetDb.Project"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Owner</ion-label>
+      <ion-input  type="text" placeholder='Owner' [(ngModel)]="assetDb.Owner"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Assignee</ion-label>
+      <ion-input type="text" placeholder='Assignee' [(ngModel)]="assetDb.Assignee"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Cube</ion-label>
+      <ion-input type="text" placeholder='Cube' [(ngModel)]="assetDb.Cube"></ion-input>
+    </ion-item>
+
+
+</ion-content>
