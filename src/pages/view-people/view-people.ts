@@ -28,7 +28,7 @@ export class ViewPeoplePage {
   }
 
   ionViewDidEnter() {
-    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
+    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );
   
     // If you have more than one side menu, use the id like below
     // this.menu.swipeEnable(false, 'menu1');
