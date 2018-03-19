@@ -11,6 +11,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { Observable } from "rxjs";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Vibration } from "@ionic-native/vibration";
+import "rxjs/add/operator/map";
 
 /**
  * Generated class for the ConfCredsPage page.
@@ -27,7 +28,7 @@ import { Vibration } from "@ionic-native/vibration";
 export class ConfCredsPage {
   credListRef: AngularFireList<any>;
   credList: Observable<any>;
-  listvalue: boolean;
+  listvalue: any;
 
   constructor(
     public navCtrl: NavController,
@@ -129,13 +130,15 @@ export class ConfCredsPage {
   }
 
   checkEmpty() {
-    console.log("listvalue " + this.listvalue);
     this.credList.map(creds => {
       creds.filter(list => {
-        if (list.size() < 0) {
-          this.listvalue = true;
+        console.log("before if");
+        if (list.size() > 0) {
+          console.log("hahah");
+          this.listvalue = 1;
         } else {
-          this.listvalue = true;
+          console.log("awlaaaas");
+         this.listvalue = 2;
         }
       });
     });
