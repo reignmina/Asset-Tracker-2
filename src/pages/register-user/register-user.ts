@@ -58,7 +58,61 @@ export class RegisterUserPage {
   }
 
   async register(creds: Login) {
+    if (creds.user.search(this.emailCheck) == -1) {
+      let toast = this.toastCtrl.create({
+        message: "E-Mail is Incorrectly Formatted. Please try again.",
+        duration: 3000,
+        position: "top"
+      });
 
+      toast.onDidDismiss(() => {
+        console.log("Dismissed toast");
+      });
+
+      toast.present(); this.vibration.vibrate(250);
+    } else if (creds.pass.length < 6) {
+      console.log(creds.pass.length);
+      let toast = this.toastCtrl.create({
+        message: "Passwords must be atleast 6 or more characters",
+        duration: 3000,
+        position: "top"
+      });
+
+      toast.onDidDismiss(() => {
+        console.log("Dismissed toast");
+      });
+
+      toast.present(); this.vibration.vibrate(250);
+    } 
+
+    else if (creds.pass != creds.confirmPass) {
+      console.log(creds.pass.length);
+      let toast = this.toastCtrl.create({
+        message: "Passwords must match.",
+        duration: 3000,
+        position: "top"
+      });
+
+      toast.onDidDismiss(() => {
+        console.log("Dismissed toast");
+      });
+
+      toast.present(); this.vibration.vibrate(250);
+    } 
+    else if (creds.user == null, creds.pass == null, creds.confirmPass == null) {
+      let toast = this.toastCtrl.create({
+        message: "Fields must not be Empty",
+        duration: 3000,
+        position: "top"
+      });
+
+      toast.onDidDismiss(() => {
+        console.log("Dismissed toast");
+      });
+
+      toast.present(); this.vibration.vibrate(250);
+    }
+    else {
       try {
 
         console.log(this.creds);
@@ -95,44 +149,6 @@ export class RegisterUserPage {
 
         toast.present(); this.vibration.vibrate(250);
       }
-    if (creds.user.search(this.emailCheck) == -1) {
-      let toast = this.toastCtrl.create({
-        message: "E-Mail is Incorrectly Formatted. Please try again.",
-        duration: 3000,
-        position: "top"
-      });
-
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
-      toast.present(); this.vibration.vibrate(250);
-    } else if (creds.pass.length < 6) {
-      console.log(creds.pass.length);
-      let toast = this.toastCtrl.create({
-        message: "Passwords must be atleast 6 or more characters",
-        duration: 3000,
-        position: "top"
-      });
-
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
-      toast.present(); this.vibration.vibrate(250);
-    } 
-    else if (creds.user == null, creds.pass == null, creds.confirmPass == null) {
-      let toast = this.toastCtrl.create({
-        message: "Fields must not be Empty",
-        duration: 3000,
-        position: "top"
-      });
-
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
-      toast.present(); this.vibration.vibrate(250);
     }
   }
 }
