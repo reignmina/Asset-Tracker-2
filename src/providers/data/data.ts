@@ -23,38 +23,40 @@ export class DataProvider {
     this.people = this.peopleRef.valueChanges();
   }
 
-  
   filterItems(searchTerm) {
-    if(searchTerm != ''){
-
+    if (searchTerm != "") {
       // console.log("data filter");
-    return this.people.map(searched => { searched
-      //   console.log("result" + searched); , ref => ref.limitToFirst(5)
-        return searched.filter(
-          people =>
-            people.First_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-        ).slice(0,5);
-        
+      return this.people.map(searched => {
+        searched;
+        //   console.log("result" + searched); , ref => ref.limitToFirst(5)
+        return searched
+          .filter(
+            people =>
+              people.First_name.toLowerCase().indexOf(
+                searchTerm.toLowerCase()
+              ) > -1
+          )
+          .slice(0, 5);
       });
-    }else{
+    } else {
       return this.people;
-  }
+    }
   }
 
   searchItems(searchTerm) {
-    if(searchTerm != ''){
-
+    if (searchTerm != "") {
       // console.log("data filter");
-    return this.people.map(searched => { searched
-      //   console.log("result" + searched); , ref => ref.limitToFirst(5)
+      return this.people.map(searched => {
+        searched;
+        //   console.log("result" + searched); , ref => ref.limitToFirst(5)
         return searched.filter(
           people =>
-            people.First_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
+            people.First_name.toLowerCase().indexOf(searchTerm.toLowerCase()) >
+            -1
         );
-        
       });
-    }else{
+    } else {
       return this.people;
-  }
+    }
   }
 }

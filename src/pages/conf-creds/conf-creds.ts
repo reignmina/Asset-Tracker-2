@@ -13,12 +13,6 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { Vibration } from "@ionic-native/vibration";
 import "rxjs/add/operator/map";
 
-/**
- * Generated class for the ConfCredsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -62,7 +56,11 @@ export class ConfCredsPage {
         {
           text: "Authenticate",
           handler: () => {
-            this.afAuth.auth.createUserWithEmailAndPassword(User, Pass);
+            this.afAuth.auth.createUserWithEmailAndPassword(User, Pass).then((ser)=>{
+              // this.afAuth.auth.currentUser.updatePhoneNumber('phoneNumber')
+              // ser.updatePhoneNumber(TANG INA MO RIN);  
+                 console.log(ser);
+            })
             this.credListRef.remove(id);
             let toast = this.toastCtrl.create({
               message: "User Sucessfully Authenticated!",
@@ -91,7 +89,7 @@ export class ConfCredsPage {
           text: "Cancel",
           handler: () => {
             console.log("Prompt Canceled");
-          }
+          } 
         },
         {
           text: "Delete Request",
