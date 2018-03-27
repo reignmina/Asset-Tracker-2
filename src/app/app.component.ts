@@ -21,7 +21,6 @@ import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
 import { DataProvider } from '../providers/data/data';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../pages/home/home';
-import { RegisterPhonePage } from '../pages/register-phone/register-phone';
 
 
 @Component({

@@ -9,7 +9,6 @@ import {
 } from "ionic-angular";
 import { MenuController } from "ionic-angular";
 import { AngularFireAuth } from "angularfire2/auth";
-import { Login } from "../../models/login";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { Vibration } from "@ionic-native/vibration";
 import { RegisterPhone } from "../../models/register-phone";
@@ -188,7 +187,9 @@ export class RegisterPhonePage {
       inputs: [
         {
           name: "code",
-          placeholder: "Code"
+          placeholder: "Code",
+          type: 'number',
+          max: 6,
         }
       ],
       buttons: [

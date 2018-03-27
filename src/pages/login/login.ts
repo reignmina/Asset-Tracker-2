@@ -11,7 +11,6 @@ import { Nav, MenuController, Platform } from "ionic-angular";
 import { Login } from "../../models/login";
 import { AngularFireAuth } from "angularfire2/auth";
 import { RegisterUserPage } from "../register-user/register-user";
-import * as firebase from "firebase/app";
 import { Vibration } from "@ionic-native/vibration";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 import { RegisterPhonePage } from "../register-phone/register-phone";
