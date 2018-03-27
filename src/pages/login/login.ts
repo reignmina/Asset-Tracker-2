@@ -11,9 +11,9 @@ import { Nav, MenuController, Platform } from "ionic-angular";
 import { Login } from "../../models/login";
 import { AngularFireAuth } from "angularfire2/auth";
 import { RegisterUserPage } from "../register-user/register-user";
-import * as firebase from "firebase/app";
 import { Vibration } from "@ionic-native/vibration";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
+import { RegisterPhonePage } from "../register-phone/register-phone";
 
 @IonicPage()
 @Component({
@@ -45,12 +45,12 @@ export class LoginPage {
     this.navCtrl.setRoot(HomePage);
   }
 
-  async loginer() {
-    await this.afAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    );
-    this.navCtrl.setRoot(HomePage);
-  }
+  // async loginer() {
+  //   await this.afAuth.auth.signInWithPopup(
+  //     new firebase.auth.GoogleAuthProvider()
+  //   );
+  //   this.navCtrl.push(RegisterPhonePage);
+  // }
   async checkAvail() {
     try {
       console.log(this.fpScanner);
@@ -72,7 +72,7 @@ export class LoginPage {
       })
       .then((result: any) => {
         this.vibration.vibrate(250);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.push(RegisterPhonePage);
       })
       .catch((error: any) => {
         console.log("err: ", error);
@@ -101,7 +101,10 @@ export class LoginPage {
           creds.pass
         );
         if (result) {
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.push(RegisterPhonePage, {
+            email: creds.user,
+            password: creds.pass
+          });
         }
       } catch (e) {
         let toast = this.toastCtrl.create({

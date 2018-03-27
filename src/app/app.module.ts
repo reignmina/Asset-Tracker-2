@@ -8,7 +8,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { DataProvider } from '../providers/data/data';
 
 
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PeoplePage } from '../pages/people/people';
@@ -34,6 +33,7 @@ import { RegisterUserPage } from '../pages/register-user/register-user';
 import { ConfCredsPage } from '../pages/conf-creds/conf-creds';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
+import { RegisterPhonePage } from '../pages/register-phone/register-phone';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,6 +42,7 @@ import { Vibration } from '@ionic-native/vibration';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { Camera } from '@ionic-native/camera';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { Firebase } from '@ionic-native/firebase';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCcKH_nF8-a509y7alvz69L1tuVCO6nkHI",
@@ -60,7 +61,6 @@ export const firebaseConfig = {
     PeoplePage,
     CustodianPage,
     AssetsPage,
-    
     PeripheralsPage,
     TagsPage,
     ProjectsPage,
@@ -81,6 +81,7 @@ export const firebaseConfig = {
     ProfilePage,
     ConfCredsPage,
     ProfileDetailsPage,
+    RegisterPhonePage
     
   ],
   imports: [
@@ -119,6 +120,7 @@ export const firebaseConfig = {
     ProfilePage,
     ConfCredsPage,
     ProfileDetailsPage,
+    RegisterPhonePage
     
   ],
   providers: [
@@ -129,7 +131,8 @@ export const firebaseConfig = {
     DataProvider,
     Vibration,
     FingerprintAIO,
-    PhotoViewer
+    PhotoViewer,
+    Firebase
   ]
 })
 export class AppModule {}

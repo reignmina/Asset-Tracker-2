@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "315547314734",
+    "firebase_url": "https://assettracker-clone.firebaseio.com",
+    "project_id": "assettracker-clone",
+    "storage_bucket": "assettracker-clone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315547314734:android:5fa47fa45cf99ba9",
+        "android_client_info": {
+          "package_name": "io.ionic.AssetTracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315547314734-jnd732he7cntptc55qo5afiome540bg2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.AssetTracker",
+            "certificate_hash": "398b916ed50c12a5a85a80052448284d9a8d2f72"
+          }
+        },
+        {
+          "client_id": "315547314734-lkhcera3kvhdsj7cril3k91q4ionvivh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFesLyn-DaFFVsDP-DATMLvGFpiKJ6H24"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315547314734-lkhcera3kvhdsj7cril3k91q4ionvivh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Two-Factor Authentication</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding align='center'>
+
+<!-- <div id="recaptcha-container"></div> -->
+
+<ion-item>
+    <ion-label stacked>Phone Number</ion-label>
+    <ion-input type="number" maxlength="15" placeholder="e.g. 639065132703" [(ngModel)]="phoneNumber"></ion-input>
+  </ion-item>
+<!-- 
+  <button ion-button id="sign-in-button" (click)="signIn(phoneNumber)">
+    Sign In
+  </button> -->
+
+  <button ion-button id="sign-in-button" (click)="registerPhone()">
+    Send Verification Code
+  </button>
+
+  <div *ngIf=fpScanner>
+    <br> 
+    <b>Or</b>
+    <br>
+    <br>
+    <button ion-button color="dark" (click)="loginfp()">Fingerprint Login</button>
+  </div>
+  <!-- <form (submit)="login(creds)">
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input name="first" type="text" [(ngModel)]="creds.username"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Email Address</ion-label>
+      <ion-input name="second" type="email" [(ngModel)]="creds.email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+        <ion-label floating>Confirm Email Address</ion-label>
+        <ion-input name="third" type="email" [(ngModel)]="creds.confEmail"></ion-input>
+        </ion-item>
+  
+    <ion-item>
+        <ion-label floating>Phone Number</ion-label>
+        <ion-input name="fourth" type="number" [(ngModel)]="creds.number"></ion-input>
+      </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input name="fifth" type="password" [(ngModel)]="creds.pass"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+        <ion-label floating>Confirm Password</ion-label>
+        <ion-input name="sixth" type="password" [(ngModel)]="creds.confPass"></ion-input>
+      </ion-item>
+  </form>
+<button ion-button color="primary" (click)="register(creds)">Register</button> -->
+
+</ion-content>
+
