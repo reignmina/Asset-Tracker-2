@@ -7,7 +7,6 @@ import {
 } from "ionic-angular";
 import { HomePage } from "../home/home";
 import { Nav, MenuController, Platform } from "ionic-angular";
-
 import { Login } from "../../models/login";
 import { AngularFireAuth } from "angularfire2/auth";
 import { RegisterUserPage } from "../register-user/register-user";

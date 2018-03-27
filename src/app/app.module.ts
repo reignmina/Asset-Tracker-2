@@ -34,7 +34,6 @@ import { RegisterUserPage } from '../pages/register-user/register-user';
 import { ConfCredsPage } from '../pages/conf-creds/conf-creds';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule} from '@angular/http';
