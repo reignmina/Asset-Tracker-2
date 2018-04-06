@@ -1,14 +1,11 @@
 <ion-menu [content]="content">
   <ion-header id='con'>
-      <ion-list >
+      <ion-list no-lines >
         <button ion-item clear [navPush]="pushPage" id='con'>
-          <ion-item id='con' >
             <ion-avatar item-start>
-              <img src="assets/imgs/logo.png">
+              <img src = 'assets/imgs/logo.png'>
             </ion-avatar>
             <h2>Kenneth M. Carolino</h2>
-          
-          </ion-item>
         </button>
         </ion-list>
   </ion-header>
@@ -16,12 +13,12 @@
   <ion-content>
     <ion-list no-lines>
       <button menuClose  ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <ion-icon [name]="p.icon" item-start></ion-icon>
-        {{p.title}}
+          <ion-icon [name]="p.icon" item-left>{{p.letter}}</ion-icon>
+        <h2 class='listtext'>{{p.title}}</h2> 
       </button>
       <button menuClose ion-item (click)="logOut()">
           <ion-icon name="log-out" item-start></ion-icon>
-            Log Out
+          <h2 class='listtext'> Log Out</h2>
       </button>
     </ion-list>
   </ion-content>
@@ -45,10 +42,10 @@
   <ion-content>
     <ion-searchbar animated [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"> </ion-searchbar>
 
-    <ion-list >
+    <ion-list no-lines >
       <ion-item *ngFor='let item of items | async' >
-        <ion-icon name='search'></ion-icon>
-        {{item.First_name}}
+        <ion-icon item-left name='search'></ion-icon>
+        <h2 class='listtext'>{{item.First_name}}</h2>
     </ion-item>
     </ion-list>
   </ion-content>

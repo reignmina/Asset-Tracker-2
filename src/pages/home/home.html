@@ -6,7 +6,7 @@
 
     <ion-buttons end>
         <button ion-button icon-only clear menuToggle='right'>
-          <ion-icon name="search" color='light'>
+          <ion-icon name="search">
           </ion-icon>
         </button>
       </ion-buttons>
@@ -19,8 +19,8 @@
 
   <ion-list no-lines>
     <ion-item *ngFor="let item of items | async"> 
-        <button ion-button block large (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
-            {{item.First_name}} {{item.Middle_name}} {{item.Last_name}}
+        <button ion-button block large color="test" (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
+            <h2 class='listtext'>{{item.First_name}} {{item.Middle_name}} {{item.Last_name}}</h2>
         </button>
       </ion-item>
   </ion-list>

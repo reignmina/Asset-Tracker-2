@@ -49,22 +49,22 @@
 
     <ion-item>
       <ion-label stacked>First Name</ion-label>
-      <ion-input clearInput type="text" placeholder='First Name' [(ngModel)]="peopleaf.firstname"></ion-input>
+      <ion-input clearInput type="text" [(ngModel)]="peopleaf.firstname"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Middle Name</ion-label>
-      <ion-input type="text" placeholder='Middle Name' [(ngModel)]="peopleaf.middlename"></ion-input>
+      <ion-label stacked>Middle Name *(Optional)</ion-label>
+      <ion-input type="text" value=' ' clearOnEdit [(ngModel)]="peopleaf.middlename"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Last Name</ion-label>
-      <ion-input type="text" placeholder='Last Name' [(ngModel)]="peopleaf.lastname"></ion-input>
+      <ion-input type="text" [(ngModel)]="peopleaf.lastname"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Accenture EID</ion-label>
-      <ion-input type="text" placeholder='EID' [(ngModel)]="peopleaf.eid"></ion-input>
+      <ion-input type="text" [(ngModel)]="peopleaf.eid"></ion-input>
     </ion-item>
 
 </ion-content>

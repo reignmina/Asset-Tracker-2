@@ -1,6 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import {
   IonicPage,
+  Nav,
+  Platform,
   NavController,
   NavParams,
   MenuController,
@@ -27,6 +29,7 @@ import { Vibration } from "@ionic-native/vibration";
   templateUrl: "add-people.html"
 })
 export class AddPeoplePage {
+  @ViewChild(Nav) nav: Nav;
   public peopleRef: AngularFireList<any>;
   people: Observable<any[]>;
   peopleaf = {} as People;
@@ -35,7 +38,9 @@ export class AddPeoplePage {
   public stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
 
   constructor(
+    
     public navCtrl: NavController,
+    public platform: Platform,
     public navParams: NavParams,
     private menu: MenuController,
     private afDatabase: AngularFireDatabase,
@@ -51,6 +56,11 @@ export class AddPeoplePage {
       lastname: this.peopleaf.lastname,
       eid: this.peopleaf.eid
     };
+
+    this.platform.registerBackButtonAction(() => {
+      console.log("Minimized");
+      this.nav.pop();
+    });
   }
 
   ionViewDidLoad() {
@@ -76,17 +86,9 @@ export class AddPeoplePage {
     var key= Math.floor(Date.now() / 1000);
       const pics = storage().ref(`Pictures/${key}.jpg`);
 
-      if (this.img == undefined){
-        newpeople.set({
-          id: newpeople.key,
-          First_name: peopleaf.firstname,
-          Middle_name: peopleaf.middlename,
-          Last_name: peopleaf.lastname,
-          EID: peopleaf.eid,
-          img: this.stock
-        });
+      if ((peopleaf.firstname || peopleaf.lastname || peopleaf.personID) == undefined){
         let toast = this.toastCtrl.create({
-          message: "User was added successfully",
+          message: "First and Last names and EID are required",
           duration: 3000,
           position: "top"
         });
@@ -94,11 +96,33 @@ export class AddPeoplePage {
         toast.onDidDismiss(() => {
           console.log("Dismissed toast");
         });
-        this.navCtrl.pop();
         toast.present(); this.vibration.vibrate(250);
       }
       
   else {
+    console.log('awla');
+    if (this.img == undefined){
+      newpeople.set({
+        id: newpeople.key,
+        First_name: peopleaf.firstname,
+        Middle_name: peopleaf.middlename,
+        Last_name: peopleaf.lastname,
+        EID: peopleaf.eid,
+        img: this.stock
+      });
+      let toast = this.toastCtrl.create({
+        message: "User was added successfully",
+        duration: 3000,
+        position: "top"
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log("Dismissed toast");
+      });
+      this.navCtrl.pop();
+      toast.present(); this.vibration.vibrate(250);
+    }
+    else{
     pics.putString(this.img, 'data_url' ).then (data =>{
     newpeople.set({
       id: newpeople.key,
@@ -120,9 +144,9 @@ export class AddPeoplePage {
   toast.onDidDismiss(() => {
     console.log("Dismissed toast");
   });
-  this.navCtrl.pop();
   toast.present(); this.vibration.vibrate(250);
   }
+ }
 }
 
 

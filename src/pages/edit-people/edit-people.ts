@@ -15,6 +15,7 @@ import { Vibration } from '@ionic-native/vibration';
 
 
 export class EditPeoplePage {
+  deleteserve: boolean;
   public peopleRef: AngularFireList<any>;
   public img: string;
   public stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
@@ -32,6 +33,7 @@ export class EditPeoplePage {
       }
       ;
       this.peopleRef = this.afDatabase.list('/People');
+      this.deleteserve = false;
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditPeoplePage');
@@ -63,20 +65,19 @@ export class EditPeoplePage {
         {
           text: 'Delete',
           handler: () => {
-           var delPics = storage().refFromURL(this.editperson.img);
-            delPics.delete();
-            this.peopleRef.update(this.editperson.personID, {
-              img: 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467',
-            });
-            console.log('Deleted Pic from Server');
-            
-            let toast = this.toastCtrl.create({
-              message: 'Picture Deleted',
-              duration: 3000,
-              position: 'top'
-            });
-            toast.present(); this.vibration.vibrate(250);
+            console.log (this.deleteserve);
+           this.deleteserve = true;
+           console.log (this.deleteserve);
+
+           let toast = this.toastCtrl.create({
+            message: 'Picture Deleted',
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present(); this.vibration.vibrate(250);
+           
           }
+          
         }
       ]
     });
@@ -127,6 +128,14 @@ export class EditPeoplePage {
       if (this.img == undefined){
          console.log("No Image");
         
+        if (this.deleteserve == true){ 
+          var delPics = storage().refFromURL(this.editperson.img);
+          delPics.delete();
+          this.peopleRef.update(this.editperson.personID, {
+            img: 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467',
+          });
+          console.log('Deleted Pic from Server');
+        }
     this.peopleRef.update(this.editperson.personID, {
       First_name: peopleaf.firstname,
       Middle_name: peopleaf.middlename,

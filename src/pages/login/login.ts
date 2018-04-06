@@ -10,9 +10,9 @@ import { Nav, MenuController, Platform } from "ionic-angular";
 import { Login } from "../../models/login";
 import { AngularFireAuth } from "angularfire2/auth";
 import { RegisterUserPage } from "../register-user/register-user";
-import * as firebase from "firebase/app";
 import { Vibration } from "@ionic-native/vibration";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
+import { RegisterPhonePage } from "../register-phone/register-phone";
 
 @IonicPage()
 @Component({
@@ -22,7 +22,7 @@ import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 export class LoginPage {
   @ViewChild(Nav) nav: Nav;
 
-  pages: Array<{ title: string; component: any }>;
+ pages: Array<{ title: string; component: any }>;
   creds = {} as Login;
   pushPage: any;
   fpScanner: boolean;
@@ -44,12 +44,12 @@ export class LoginPage {
     this.navCtrl.setRoot(HomePage);
   }
 
-  async loginer() {
-    await this.afAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    );
-    this.navCtrl.setRoot(HomePage);
-  }
+  // async loginer() {
+  //   await this.afAuth.auth.signInWithPopup(
+  //     new firebase.auth.GoogleAuthProvider()
+  //   );
+  //   this.navCtrl.push(RegisterPhonePage);
+  // }
   async checkAvail() {
     try {
       console.log(this.fpScanner);
@@ -71,7 +71,7 @@ export class LoginPage {
       })
       .then((result: any) => {
         this.vibration.vibrate(250);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.push(RegisterPhonePage);
       })
       .catch((error: any) => {
         console.log("err: ", error);
@@ -81,7 +81,7 @@ export class LoginPage {
   ionViewDidEnter() {
     this.menu.swipeEnable(false, "left");
     this.menu.swipeEnable(false, "right");
-    this.checkAvail();
+     
     // If you have more than one side menu, use the id like below
     // this.menu.swipeEnable(false, 'menu1');
   }
@@ -95,12 +95,16 @@ export class LoginPage {
   async login(creds: Login) {
     if ((creds.user != null, creds.pass != null)) {
       try {
-        const result = await this.afAuth.auth.signInWithEmailAndPassword(
+        const result = await this.afAuth.auth.signInWithEmailAndPassword( 
           creds.user,
           creds.pass
         );
         if (result) {
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.push(RegisterPhonePage, {
+            email: creds.user,
+            password: creds.pass
+          });
+          // this.navCtrl.push(RegisterPhonePage);
         }
       } catch (e) {
         let toast = this.toastCtrl.create({

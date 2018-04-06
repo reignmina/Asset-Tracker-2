@@ -6,6 +6,7 @@
 
 <div *ngIf="afAuth.authState | async as authUser">
   <h1>{{authUser.email}}</h1>
+  <h1>{{authUser.displayName}}</h1>
   <pre>{{authUser | json}}</pre>
 </div>
 
