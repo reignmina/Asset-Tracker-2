@@ -20,9 +20,12 @@ import "rxjs/add/operator/map";
 })
 export class ConfCredsPage {
   credListRef: AngularFireList<any>;
-  credList: Observable<any>;
+  credList: Observable<any[]>;
   listvalue: any;
 
+  peopleRef: AngularFireList<any>;
+  people: Observable<any[]>;
+  public stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,13 +37,16 @@ export class ConfCredsPage {
   ) {
     this.credListRef = this.afDb.list("/Authlist");
     this.credList = this.credListRef.valueChanges();
+
+    this.peopleRef = this.afDb.list("/People");
+    this.people = this.peopleRef.valueChanges();
   }
 
   ionViewDidLoad() {
     console.log(this.credList);
   }
 
-  approveUser(User, Pass, id) {
+  approveUser(User, Pass, id,firstname, middlename, lastname, phone, type) {
     console.log(User, Pass);
     let confirm = this.alertCtrl.create({
       title: "Delete?",
@@ -57,12 +63,30 @@ export class ConfCredsPage {
           handler: () => {
             this.afAuth.auth.createUserWithEmailAndPassword(User, Pass).then(
               (success) => {
-              success.auth.updateProfile({
-                  displayName: 'admin',
+              success.updateProfile({
+                  displayName: type,
                 })
-                .then(res => console.log("profile updated"))
+                .then(res => 
+                  console.log("profile updated"),
+                  console.log(success)
+
+                
+                )
                 .catch(err => console.log(err));
               });
+
+              const authConf = this.peopleRef.push({});
+              authConf.set({
+                id: authConf.key,
+                EID: User,
+                First_name: firstname,
+                Middle_name: middlename,
+                Last_name: lastname,
+                img: this.stock
+
+
+              })
+
             this.credListRef.remove(id);
             let toast = this.toastCtrl.create({
               message: "User Sucessfully Authenticated!",

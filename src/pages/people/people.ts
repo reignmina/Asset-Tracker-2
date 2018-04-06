@@ -31,7 +31,7 @@ export class PeoplePage {
 
     this.platform.registerBackButtonAction(() => {
       console.log("Minimized");
-      this.nav.pop();
+      this.navCtrl.pop();
     });
   }
   

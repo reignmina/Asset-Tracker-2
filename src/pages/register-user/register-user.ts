@@ -1,154 +1,174 @@
-import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  ToastController
-} from "ionic-angular";
-import { MenuController } from "ionic-angular";
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Nav, ToastController } from 'ionic-angular';
 
-import { AngularFireAuth } from "angularfire2/auth";
-import { Login } from "../../models/login";
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
-import { Vibration } from "@ionic-native/vibration";
-
-/**
- * Generated class for the RegisterUserPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Login } from '../../models/login';
+import { HomePage } from '../home/home';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from '@firebase/util';
+import { LoginPage } from '../login/login';
+import { Register } from '../../models/register';
 
 @IonicPage()
 @Component({
-  selector: "page-register-user",
-  templateUrl: "register-user.html"
+  selector: 'page-register-user',
+  templateUrl: 'register-user.html',
 })
 export class RegisterUserPage {
-  emailCheck: any;
-  authRef: AngularFireList<any>;
+  @ViewChild(Nav) nav: Nav;
+
+  
+
+  public userRef : AngularFireList<any>
+  newUser : Observable<any[]>;
   creds = {} as Login;
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public menu: MenuController,
-    public toastCtrl: ToastController,
-    public afAuth: AngularFireAuth,
-    public afDb: AngularFireDatabase, private vibration: Vibration,
-  ) {
-    this.authRef = this.afDb.list("/Authlist");
-    this.emailCheck = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  checkEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, public afDatabase: AngularFireDatabase, private toastCtrl: ToastController, public afAuth: AngularFireAuth) {
+    this.userRef = this.afDatabase.list('/Authlist');
+    // this.newUser = this.userRef.valueChanges;
+
+    
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad RegisterUserPage");
+    console.log('ionViewDidLoad RegisterPage');
   }
+
 
   ionViewDidEnter() {
-    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
 
-    // If you have more than one side menu, use the id like below
-    // this.menu.swipeEnable(false, 'menu1');
-  }
+    this.menuCtrl.swipeEnable( false )
+}
 
-  ionViewWillLeave() {
-    // Don't forget to return the swipe to normal, otherwise
-    // the rest of the pages won't be able to swipe to open menu
-    this.menu.swipeEnable(true);
-  }
+  async register(creds: Register){
+    console.log(creds);
+try{
+    if(creds.email.search(this.checkEmail) != -1 &&
+     creds.pass !=null && 
+     creds.pass != "" && 
+     creds.firstname !=null && 
+     creds.firstname != "" &&
+     creds.middlename !=null && 
+     creds.middlename != "" &&
+     creds.lastname !=null && 
+     creds.lastname != "" &&
+    //  creds.type !=null && 
+    //  creds.type != "" &&
+     creds.pass==creds.passCon && 
+     creds.pass.length>= 6 &&
+     creds.phone != null){
+    
+      const newUser = this.userRef.push({});
 
-  async register(creds: Login) {
-    if (creds.user.search(this.emailCheck) == -1) {
-      let toast = this.toastCtrl.create({
-        message: "E-Mail is Incorrectly Formatted. Please try again.",
-        duration: 3000,
-        position: "top"
+    console.log(this.userRef);
+    console.log(creds);
+
+      newUser.set({
+        User: creds.email,
+        Pass: creds.pass,
+        id: newUser.key,
+        firstname: creds.firstname,
+        middlename: creds.middlename,
+        lastname: creds.lastname,
+        type: creds.type,
+        // photoURL: creds.img
+        phone: creds.phone
+        
       });
 
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
-      toast.present(); this.vibration.vibrate(250);
-    } else if (creds.pass.length < 6) {
-      console.log(creds.pass.length);
-      let toast = this.toastCtrl.create({
-        message: "Passwords must be atleast 6 or more characters",
-        duration: 3000,
-        position: "top"
-      });
-
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
-      toast.present(); this.vibration.vibrate(250);
-    } 
-
-    else if (creds.pass != creds.confirmPass) {
-      console.log(creds.pass.length);
-      let toast = this.toastCtrl.create({
-        message: "Passwords must match.",
-        duration: 3000,
-        position: "top"
-      });
-
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
-      toast.present(); this.vibration.vibrate(250);
-    } 
-    else if (creds.user == null, creds.pass == null, creds.confirmPass == null) {
-      let toast = this.toastCtrl.create({
-        message: "Fields must not be Empty",
-        duration: 3000,
-        position: "top"
-      });
-
-      toast.onDidDismiss(() => {
-        console.log("Dismissed toast");
-      });
-
-      toast.present(); this.vibration.vibrate(250);
-    }
-    else {
-      try {
-
-        console.log(this.creds);
-        const authConf = this.authRef.push({});
-        authConf.set({
-          id: authConf.key,
-          User: creds.user,
-          Pass: creds.pass
-        });
-        this.navCtrl.pop();
-
+        this.navCtrl.setRoot(LoginPage);
         let toast = this.toastCtrl.create({
-          message:
-            "Registration Sucessful, Wait for your account to be Enabled by the Admin/Custodian",
+          message: 'Request sent. Please wait for your account to be authorized.',
           duration: 3000,
-          position: "top"
+          position: 'top'
         });
-
+      
         toast.onDidDismiss(() => {
-          console.log("Dismissed toast");
+          console.log('Dismissed toast');
         });
-        toast.present(); this.vibration.vibrate(250);
-      } catch (e) {
-        console.error(e);
-        let toast = this.toastCtrl.create({
-          message: e,
-          duration: 3000,
-          position: "top"
-        });
-
-        toast.onDidDismiss(() => {
-          console.log("Dismissed toast");
-        });
-
-        toast.present(); this.vibration.vibrate(250);
+      
+        toast.present() 
       }
-    }
+    
+    
+
+  else if(creds.pass != creds.passCon){
+
+    let toast = this.toastCtrl.create({
+      message: 'Passwords did not match with each other. try again',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present()
   }
+
+  else if(creds.email.search(this.checkEmail) == -1){
+
+    let toast = this.toastCtrl.create({
+      message: 'Please enter a valid email',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present()
+  }
+
+  else if(creds.pass.length <6){
+
+    let toast = this.toastCtrl.create({
+      message: 'Password should be atleast 6 characters.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present()
+  }
+  else{
+    let toast = this.toastCtrl.create({
+      message: 'Fill in all fields',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present()
+  
+  }
+  }
+  catch(e){
+    let toast = this.toastCtrl.create({
+      message: 'Fill in all fields',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present()
+
+  }
+
+  }
+  
+
 }

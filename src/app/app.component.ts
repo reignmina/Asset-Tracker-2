@@ -23,6 +23,7 @@ import { ProfilePage } from   "../pages/profile/profile";
 import { ConfCredsPage } from "../pages/conf-creds/conf-creds";
 import { ProfileDetailsPage } from "../pages/profile-details/profile-details";
 import { HomePage } from        "../pages/home/home";
+import { Vibration } from "@ionic-native/vibration";
 
 @Component({
   templateUrl: "app.html"
@@ -42,23 +43,24 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private afAuth: AngularFireAuth,
-    public dataService: DataProvider
+    public dataService: DataProvider,
+    public vibrate: Vibration
   ) {
     this.initializeApp();
     this.pages = [
-      { icon: "people",letter: "", title: "People", component: PeoplePage },
-      { icon: "star",letter: "", title: "Custodian", component: CustodianPage },
-      { icon: "desktop",letter: "", title: "Assets", component: AssetsPage },
-      { icon: "flower",letter: "", title: "Peripherals", component: PeripheralsPage },
-      { icon: "pricetag",letter: "", title: "Tags", component: TagsPage },
-      { icon: "pie",letter: "", title: "Projects", component: ProjectsPage },
-      { icon: "", letter: "T", title: "Types", component: TypesPage },
-      { icon: "", letter: "B", title: "Brands", component: BrandsPage },
-      { icon: "compass",letter: "", title: "Cubes", component: CubesPage },
-      { icon: "", letter: "O", title: "Operating Systems", component: OsPage },
-      { icon: "list",letter: "", title: "Logs", component: LogsPage },
-      { icon: "people",letter: "", title: "Requests", component: ConfCredsPage },
-      { icon: "people",letter: "", title: "Profile", component: ProfileDetailsPage }
+      { icon: "people",  letter: "",  title: "People",            component: PeoplePage },
+      { icon: "star",    letter: "",  title: "Custodian",         component: CustodianPage },
+      { icon: "desktop", letter: "",  title: "Assets",            component: AssetsPage },
+      { icon: "flower",  letter: "",  title: "Peripherals",       component: PeripheralsPage },
+      { icon: "pricetag",letter: "",  title: "Tags",              component: TagsPage },
+      { icon: "pie",     letter: "",  title: "Projects",          component: ProjectsPage },
+      { icon: "",        letter: "T", title: "Types",             component: TypesPage },
+      { icon: "",        letter: "B", title: "Brands",            component: BrandsPage },
+      { icon: "compass", letter: "",  title: "Cubes",             component: CubesPage },
+      { icon: "",        letter: "O", title: "Operating Systems", component: OsPage },
+      { icon: "list",    letter: "",  title: "Logs",              component: LogsPage },
+      { icon: "people",  letter: "",  title: "Requests",          component: ConfCredsPage },
+      { icon: "people",  letter: "",  title: "Profile",           component: ProfileDetailsPage }
     ];
 
     this.platform.registerBackButtonAction(() => {
@@ -88,7 +90,7 @@ export class MyApp {
           position: "top"
         });
 
-        toast.present();
+        toast.present(); this.vibrate.vibrate(250);
       }
     } else {
       this.nav.push(page.component);

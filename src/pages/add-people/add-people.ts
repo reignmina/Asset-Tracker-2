@@ -59,7 +59,7 @@ export class AddPeoplePage {
 
     this.platform.registerBackButtonAction(() => {
       console.log("Minimized");
-      this.nav.pop();
+      this.navCtrl.pop();
     });
   }
 
