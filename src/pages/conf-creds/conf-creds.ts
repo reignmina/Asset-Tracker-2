@@ -13,6 +13,7 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { Vibration } from "@ionic-native/vibration";
 import "rxjs/add/operator/map";
 
+
 @IonicPage()
 @Component({
   selector: "page-conf-creds",
@@ -114,7 +115,7 @@ export class ConfCredsPage {
           text: "Cancel",
           handler: () => {
             console.log("Prompt Canceled");
-          }
+          } 
         },
         {
           text: "Delete Request",
