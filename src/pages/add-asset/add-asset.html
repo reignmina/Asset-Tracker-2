@@ -2,16 +2,17 @@
   <ion-navbar>
     <ion-title>Add an Asset</ion-title>
     <ion-buttons end>
-    <button ion-button icon-only clear (click)='this.addAsset(assetDb)'>
-      <ion-icon name="checkmark" color='light'>
-       </ion-icon>
-    </button>  
-  </ion-buttons> 
+      <button ion-button icon-only clear (click)='this.addAsset(assetDb)'>
+        <ion-icon name="checkmark" color='light'>
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+
     <ion-slides pager>
 
         <ion-slide style="background-color: grey" (click)='takePic()'>
