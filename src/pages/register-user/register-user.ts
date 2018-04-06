@@ -26,7 +26,7 @@ import { Vibration } from "@ionic-native/vibration";
 })
 export class RegisterUserPage {
   emailCheck: any;
-  peopleRef: AngularFireList<any>;
+  authRef: AngularFireList<any>;
   creds = {} as Login;
   constructor(
     public navCtrl: NavController,
@@ -36,7 +36,7 @@ export class RegisterUserPage {
     public afAuth: AngularFireAuth,
     public afDb: AngularFireDatabase, private vibration: Vibration,
   ) {
-    this.peopleRef = this.afDb.list("/Authlist");
+    this.authRef = this.afDb.list("/Authlist");
     this.emailCheck = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   }
 
@@ -116,7 +116,7 @@ export class RegisterUserPage {
       try {
 
         console.log(this.creds);
-        const authConf = this.peopleRef.push({});
+        const authConf = this.authRef.push({});
         authConf.set({
           id: authConf.key,
           User: creds.user,

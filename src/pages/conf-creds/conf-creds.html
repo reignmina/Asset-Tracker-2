@@ -8,14 +8,10 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let c of credList | async">
-      <button ion-item clear (click)='awla()'>
-        <ion-avatar>
+        <ion-avatar ion-item>
           <ion-icon name="person"></ion-icon>
           <h2>{{c.User}}</h2>
         </ion-avatar>
-
-      </button>
-
       <ion-item-options side="right">
 
         <button ion-button color="success" (click)='approveUser(c.User, c.Pass, c.id)'>
@@ -30,8 +26,4 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
-  <h1 *ngIf='listvalue == true'>
-    There are no pending requests as of this moment.
-  </h1>
 </ion-content>

@@ -9,5 +9,6 @@ export interface Asset {
     Owner: string;
     Serial: string;
     Type: string;
+    Project: string;
     id: string;
   }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav, MenuController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, Platform, NavController, NavParams, Nav, MenuController, AlertController, ToastController } from 'ionic-angular';
 import { AddPeoplePage } from '../add-people/add-people';
 import { ViewPeoplePage } from '../view-people/view-people';
 import { EditPeoplePage } from '../edit-people/edit-people';
@@ -8,7 +8,6 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import {storage} from 'firebase';
 import { Vibration } from '@ionic-native/vibration';
-
 
 @IonicPage()
 @Component({
@@ -22,13 +21,18 @@ export class PeoplePage {
   people: Observable<any[]>;
   pushPage: any;
   public stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
-  constructor(public navCtrl: NavController, private vibration: Vibration, public navParams: NavParams, private menu: MenuController, public alertCtrl: AlertController, private afDatabase: AngularFireDatabase, public toastCtrl: ToastController)  {
+  constructor(public platform: Platform, public navCtrl: NavController, private vibration: Vibration, public navParams: NavParams, private menu: MenuController, public alertCtrl: AlertController, private afDatabase: AngularFireDatabase, public toastCtrl: ToastController)  {
 
     
     this.selectedPerson = navParams.get('person')
     this.pushPage = AddPeoplePage;
     this.peopleRef = this.afDatabase.list('People/');
     this.people = this.peopleRef.valueChanges();
+
+    this.platform.registerBackButtonAction(() => {
+      console.log("Minimized");
+      this.nav.pop();
+    });
   }
   
   viewPerson(First_name, Middle_name, Last_name, EID, img){
@@ -41,6 +45,7 @@ export class PeoplePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PeoplePage');
+    console.log(this.people);
   }
   ionViewDidEnter() {
     this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );
@@ -62,6 +67,7 @@ export class PeoplePage {
         buttons: [
           {
             text: 'Cancel',
+             
             handler: () => {
 
               console.log('Prompt Canceled');

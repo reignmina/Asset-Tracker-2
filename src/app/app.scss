@@ -6,6 +6,10 @@
 	display: none;
 }
 #con{
-    background-color: rgb(0, 0, 0);
+    background-color:color($colors, dark);
+    color: white;
+}
+
+.listtext{
     color: white;
 }

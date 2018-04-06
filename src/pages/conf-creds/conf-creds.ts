@@ -13,12 +13,6 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { Vibration } from "@ionic-native/vibration";
 import "rxjs/add/operator/map";
 
-/**
- * Generated class for the ConfCredsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -62,7 +56,14 @@ export class ConfCredsPage {
         {
           text: "Authenticate",
           handler: () => {
-            this.afAuth.auth.createUserWithEmailAndPassword(User, Pass);
+            this.afAuth.auth.createUserWithEmailAndPassword(User, Pass).then(
+              (success) => {
+              success.auth.updateProfile({
+                  displayName: 'admin',
+                })
+                .then(res => console.log("profile updated"))
+                .catch(err => console.log(err));
+              });
             this.credListRef.remove(id);
             let toast = this.toastCtrl.create({
               message: "User Sucessfully Authenticated!",
@@ -73,7 +74,6 @@ export class ConfCredsPage {
             toast.onDidDismiss(() => {
               console.log("Dismissed toast");
             });
-
             toast.present(); this.vibration.vibrate(250);
           }
         }
@@ -91,7 +91,7 @@ export class ConfCredsPage {
           text: "Cancel",
           handler: () => {
             console.log("Prompt Canceled");
-          }
+          } 
         },
         {
           text: "Delete Request",
@@ -117,8 +117,6 @@ export class ConfCredsPage {
   ionViewDidEnter() {
     this.menu.swipeEnable(false, "left");
     this.menu.swipeEnable(false, "right");
-    this.checkEmpty();
-
     // If you have more than one side menu, use the id like below
     // this.menu.swipeEnable(false, 'menu1');
   }
@@ -127,21 +125,5 @@ export class ConfCredsPage {
     // Don't forget to return the swipe to normal, otherwise
     // the rest of the pages won't be able to swipe to open menu
     this.menu.swipeEnable(true);
-  }
-
-  checkEmpty() {
-    this.credList.map(creds => {
-      creds.filter(list => {
-        console.log("before if");
-        if (list.size() > 0) {
-          console.log("hahah");
-          this.listvalue = 1;
-        } else {
-          console.log("awlaaaas");
-         this.listvalue = 2;
-        }
-      });
-    });
-    console.log("listvalueafter " + this.listvalue);
   }
 }

@@ -1,95 +1,112 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component, ViewChild } from "@angular/core";
+import { Nav, Platform, ToastController } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { AppMinimize } from "@ionic-native/app-minimize";
 
-import { PeoplePage } from '../pages/people/people';
-import { CustodianPage } from '../pages/custodian/custodian';
-import { AssetsPage } from '../pages/assets/assets';
-import { PeripheralsPage } from '../pages/peripherals/peripherals';
-import { TagsPage } from '../pages/tags/tags';
-import { ProjectsPage } from '../pages/projects/projects';
-import { TypesPage } from '../pages/types/types';
-import { BrandsPage } from '../pages/brands/brands'; 
-import { CubesPage } from '../pages/cubes/cubes';
-import { OsPage } from '../pages/os/os';
-import { LogsPage } from '../pages/logs/logs';
-import { LoginPage } from '../pages/login/login';
-import { ProfilePage } from '../pages/profile/profile';
-import { ConfCredsPage } from '../pages/conf-creds/conf-creds';
-import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
-import { DataProvider } from '../providers/data/data';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { HomePage } from '../pages/home/home';
+import { DataProvider } from    "../providers/data/data";
+import { AngularFireAuth } from "angularfire2/auth";
 
+import { PeoplePage } from    "../pages/people/people";
+import { CustodianPage } from "../pages/custodian/custodian";
+import { AssetsPage } from    "../pages/assets/assets";
+import { PeripheralsPage } from "../pages/peripherals/peripherals";
+import { TagsPage } from      "../pages/tags/tags";
+import { ProjectsPage } from  "../pages/projects/projects";
+import { TypesPage } from     "../pages/types/types";
+import { BrandsPage } from    "../pages/brands/brands";
+import { CubesPage } from     "../pages/cubes/cubes";
+import { OsPage } from        "../pages/os/os";
+import { LogsPage } from      "../pages/logs/logs";
+import { LoginPage } from     "../pages/login/login";
+import { ProfilePage } from   "../pages/profile/profile";
+import { ConfCredsPage } from "../pages/conf-creds/conf-creds";
+import { ProfileDetailsPage } from "../pages/profile-details/profile-details";
+import { HomePage } from        "../pages/home/home";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: "app.html"
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
   pushPage: any = ProfilePage;
-  pages: Array<{icon: string, title: string, component: any}>;
+  pages: Array<{ icon: string; letter: string; title: string; component: any }>;
   public items: any;
-  public searchTerm: string = '' ;
-  name: any;
-  img: any;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth, public dataService: DataProvider) {
+  public searchTerm: string = "";
+  constructor(
+    public platform: Platform,
+    public min: AppMinimize,
+    public toastCtrl: ToastController,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    private afAuth: AngularFireAuth,
+    public dataService: DataProvider
+  ) {
     this.initializeApp();
-    // used for an example of ngFor and navigation
     this.pages = [
-      {icon: 'people', title: 'People', component: PeoplePage },
-      {icon: 'star', title: 'Custodian', component: CustodianPage },
-      {icon: 'desktop', title: 'Assets', component: AssetsPage },
-      {icon: 'flower', title: 'Peripherals', component: PeripheralsPage },
-      {icon: 'pricetag', title: 'Tags', component: TagsPage},
-      {icon: 'pie', title: 'Projects', component: ProjectsPage},
-      {icon: 'T', title: 'Types', component: TypesPage },
-      {icon: 'B', title: 'Brands', component: BrandsPage},
-      {icon: 'compass', title: 'Cubes', component: CubesPage},
-      {icon: 'Opera', title: 'Operating Systems', component: OsPage },
-      {icon: 'list', title: 'Logs', component: LogsPage},
-      {icon: 'people', title: 'Requests', component: ConfCredsPage},
-      {icon: 'people', title: 'Profile', component: ProfileDetailsPage}
+      { icon: "people",letter: "", title: "People", component: PeoplePage },
+      { icon: "star",letter: "", title: "Custodian", component: CustodianPage },
+      { icon: "desktop",letter: "", title: "Assets", component: AssetsPage },
+      { icon: "flower",letter: "", title: "Peripherals", component: PeripheralsPage },
+      { icon: "pricetag",letter: "", title: "Tags", component: TagsPage },
+      { icon: "pie",letter: "", title: "Projects", component: ProjectsPage },
+      { icon: "", letter: "T", title: "Types", component: TypesPage },
+      { icon: "", letter: "B", title: "Brands", component: BrandsPage },
+      { icon: "compass",letter: "", title: "Cubes", component: CubesPage },
+      { icon: "", letter: "O", title: "Operating Systems", component: OsPage },
+      { icon: "list",letter: "", title: "Logs", component: LogsPage },
+      { icon: "people",letter: "", title: "Requests", component: ConfCredsPage },
+      { icon: "people",letter: "", title: "Profile", component: ProfileDetailsPage }
     ];
+
+    this.platform.registerBackButtonAction(() => {
+      console.log("Minimized");
+      this.min.minimize();
+    });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      console.log('awla');
-      this.initList();
+      console.log(this.pages);
+      this.setFilteredItems();
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.push(page.component);
+    if (page.component == ConfCredsPage || page.component == CubesPage) {
+      var accType = this.afAuth.auth.currentUser.displayName;
+      if (accType == "admin") {
+        this.nav.push(page.component);
+      } else {
+        let toast = this.toastCtrl.create({
+          message: "Sorry, This page is unavailable for your access level.",
+          duration: 3000,
+          position: "top"
+        });
+
+        toast.present();
+      }
+    } else {
+      this.nav.push(page.component);
+    }
   }
   logOut() {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.afAuth.auth.signOut();
     this.nav.setRoot(LoginPage);
   }
-  initList(){
+  initList() {
     this.items = this.dataService.people;
   }
-  
-  submitKeyword(searchTerm)
-  {
-    this.nav.setRoot(HomePage, {searchTerm});
+
+  submitKeyword(searchTerm) {
+    this.nav.setRoot(HomePage, { searchTerm });
   }
   setFilteredItems() {
     this.items = this.dataService.filterItems(this.searchTerm);
-    console.log('items' + this.items)
-}
-  
+    console.log("items" + this.items);
+  }
 }

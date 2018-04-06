@@ -33,19 +33,23 @@
     </div>
   </ion-slide>
 
-    <ion-slide *ngIf='img == undefined'>
-      <img [src]='editperson.img'>
-      <ion-fab right top *ngIf='this.editperson.img != stock' >
-        <button ion-fab color="danger" (click)='showConfirmserver(peopleaf)'>
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-fab>
-    </ion-slide>
-    
+  <ion-slide *ngIf='(img == undefined && deleteserve == true)'>
+    <img src='assets/imgs/logo.png'>
+  </ion-slide>
+
   <ion-slide *ngIf='img != undefined'>
     <img [src]='img'>
     <ion-fab right top>
       <button ion-fab color="danger" (click)='showConfirmlocal()'>
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-fab>
+  </ion-slide>
+
+  <ion-slide *ngIf='(img == undefined && deleteserve == false)'>
+    <img [src]='editperson.img'>
+    <ion-fab right top *ngIf='this.editperson.img != stock' >
+      <button ion-fab color="danger" (click)='showConfirmserver(peopleaf)'>
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-fab>

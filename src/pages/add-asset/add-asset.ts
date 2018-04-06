@@ -21,17 +21,16 @@ import { Vibration } from "@ionic-native/vibration";
 export class AddAssetPage {
   public assetRef: AngularFireList<any>;
   assets: Observable<any[]>;
+  typeRef: AngularFireList<any>;
+  type: Observable<any[]>;
+  OSRef: AngularFireList<any>;
+  OS: Observable<any[]>;
+  cubeRef: AngularFireList<any>;
+  cube: Observable<any[]>;
+  projRef: AngularFireList<any>;
+  proj: Observable<any[]>;
   assetDb = {} as Asset;
-  addasset = { Assignee: "",
-    Cube: "",
-    HDD: "",
-    Memory: "",
-    Model: "",
-    Number: "",
-    OS: "",
-    Owner: "",
-    Serial: "",
-    Type: "", };
+
 
   constructor(
     public navCtrl: NavController,
@@ -43,33 +42,25 @@ export class AddAssetPage {
   ) {
     this.assetRef = this.afDatabase.list("/Assets");
     this.assets = this.assetRef.valueChanges();
-    this.addasset = {
-      Assignee: this.assetDb.Assignee,
-      Cube: this.assetDb.Cube,
-      HDD: this.assetDb.HDD,
-      Memory: this.assetDb.Memory,
-      Model: this.assetDb.Model,
-      Number: this.assetDb.Number,
-      OS: this.assetDb.OS,
-      Owner: this.assetDb.Owner,
-      Serial: this.assetDb.Serial,
-      Type: this.assetDb.Type
-    };
+    this.typeRef = this.afDatabase.list("/Types");
+    this.type = this.typeRef.valueChanges();
+    this.OSRef = this.afDatabase.list("/OS");
+    this.OS = this.OSRef.valueChanges();
+    this.cubeRef = this.afDatabase.list("/Cubes");
+    this.cube = this.cubeRef.valueChanges();
+    this.projRef = this.afDatabase.list("/Projects");
+    this.proj = this.projRef.valueChanges();
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad AddPeoplePage");
   }
   ionViewDidEnter() {
-    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
-
-    // If you have more than one side menu, use the id like below
-    // this.menu.swipeEnable(false, 'menu1');
+    this.menu.swipeEnable(false, 'left' );
+    this.menu.swipeEnable(false, 'right' );
   }
 
   ionViewWillLeave() {
-    // Don't forget to return the swipe to normal, otherwise
-    // the rest of the pages won't be able to swipe to open menu
     this.menu.swipeEnable(true);
   }
 
@@ -88,7 +79,8 @@ export class AddAssetPage {
       OS: assetDb.OS,
       Owner: assetDb.Owner,
       Serial: assetDb.Serial,
-      Type: assetDb.Type
+      Type: assetDb.Type,
+      Project: assetDb.Project
     });
 
     let toast = this.toastCtrl.create({
@@ -115,7 +107,7 @@ export class AddAssetPage {
         correctOrientation: true
       };
 
-      var key= Math.random().toString(36).replace(/[^a-z]+/g, '').substring(0, 10);
+      var key=  Math.floor(Date.now() / 1000);
       const result = await this.camera.getPicture(options);
       const img = `data:image/jpeg;base64,${result}`;
       const pics = storage().ref('Pictures/' + key);

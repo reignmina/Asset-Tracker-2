@@ -12,78 +12,100 @@
 
 
 <ion-content padding>
-  <ion-slides pager>
 
-    <ion-slide style="background-color: grey" (click)='takePic()'>
-      <button ion-button icon-only clear>
-        <ion-icon name="camera" color='dark'></ion-icon>
-      </button>
-    </ion-slide>
+    <ion-slides pager>
 
-    <ion-slide>
-      <img src='assets/imgs/men.jpg'>
-      <ion-fab right top>
-        <button ion-fab color="danger">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-fab>
-    </ion-slide>
-  </ion-slides>
+        <ion-slide style="background-color: grey" (click)='takePic()'>
+            <button ion-button icon-only clear >
+                <ion-icon name="camera" color='dark'></ion-icon>
+                 </button>
+        </ion-slide>
+      
+        <ion-slide>
+            <img src='assets/imgs/men.jpg'>
+            <ion-fab right top>
+              <button ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>
+            </ion-fab>
+        </ion-slide>
+      </ion-slides>
 
-  <ion-item>
-    <ion-label stacked>Type</ion-label>
-    <ion-input type="text" placeholder='Model' [(ngModel)]="assetDb.Type"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Model</ion-label>
-    <ion-input type="text" placeholder='Model' [(ngModel)]="assetDb.Model"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>OS</ion-label>
-    <ion-input type="text" placeholder='OS' [(ngModel)]="assetDb.OS"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Memory</ion-label>
-    <ion-input type="text" placeholder='Memory' [(ngModel)]="assetDb.Memory"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Hard Disk Capacity</ion-label>
-    <ion-input type="text" placeholder='Capacity' [(ngModel)]="assetDb.HDD"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Number Tag</ion-label>
-    <ion-input type="text" placeholder='Number Tag' [(ngModel)]="assetDb.Number"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Serial Number</ion-label>
-    <ion-input type="text" placeholder='Serial Number' [(ngModel)]="assetDb.Serial"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Project</ion-label>
-    <ion-input type="text" placeholder='Project' [(ngModel)]="assetDb.Project"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Owner</ion-label>
-    <ion-input type="text" placeholder='Owner' [(ngModel)]="assetDb.Owner"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Assignee</ion-label>
-    <ion-input type="text" placeholder='Assignee' [(ngModel)]="assetDb.Assignee"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Cube</ion-label>
-    <ion-input type="text" placeholder='Cube' [(ngModel)]="assetDb.Cube"></ion-input>
-  </ion-item>
-
+        <form (ngSubmit)="onSubmit()">
+      
+              <ion-item>
+                  <ion-label>Type</ion-label>
+                  <ion-select name='a' [(ngModel)]='assetDb.Type' interface="popover" >
+                    <ion-option *ngFor="let t of type | async" value= {{t.name}}> {{t.name}}</ion-option>
+                    
+                  </ion-select>
+                </ion-item>
+  
+                <ion-item>
+                  <ion-label>Model</ion-label>
+                  <ion-select name='a' [(ngModel)]='assetDb.Model' interface="popover" >
+                    <ion-option *ngFor="let t of type | async" value= {{t.name}}> {{t.name}}</ion-option>
+                    
+                  </ion-select>
+                </ion-item>
+              
+                <ion-item>
+                  <ion-label>Operating System</ion-label>
+                  <ion-select name='a' [(ngModel)]='assetDb.OS' interface="popover" >
+                    <ion-option *ngFor="let o of OS | async" value= {{o.Name}}> {{o.Name}}</ion-option>
+                    
+                  </ion-select>
+                </ion-item>
+  
+              <ion-item>
+                  <ion-label stacked>Memory</ion-label>
+                  <ion-input type="text" placeholder="The memory capacity of the device" name='b' [(ngModel)]='assetDb.Memory'></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Hard disk</ion-label>
+                  <ion-input type="text" placeholder="The hard disk capacity of the device" name='c' [(ngModel)]='assetDb.HDD'></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Number</ion-label>
+                  <ion-input type="text" placeholder="e.g. CP.CCQO.123456.FA" name='d' [(ngModel)]='assetDb.Number'></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Serial Tag</ion-label>
+                  <ion-input type="text" placeholder="e.g. PSWEUD230WEHPM34" name='e' [(ngModel)]='assetDb.Serial'></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                  <ion-label>Project</ion-label>
+                  <ion-select name='2' [(ngModel)]='assetDb.Project' interface="popover" >
+                    <ion-option *ngFor="let p of proj | async" value= {{p.Name}}> {{p.Name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+  
+              <ion-item>
+                      <ion-label>Owner</ion-label>
+                      <ion-select name='k' [(ngModel)]='assetDb.Owner' interface="popover" >
+                        <ion-option *ngFor="let p of people | async" value= {{p.First_name}}> {{p.First_name}}</ion-option>
+                        
+                      </ion-select>
+              </ion-item>
+  
+              <ion-item>
+                      <ion-label>Assignee</ion-label>
+                      <ion-select name='j' [(ngModel)]='assetDb.Assignee' interface="popover" >
+                        <ion-option *ngFor="let c of cust | async" value= {{c.First_name}}> {{c.First_name}}</ion-option>
+                        
+                      </ion-select>
+              </ion-item>
+  
+              <ion-item>
+                  <ion-label>Cube</ion-label>
+                  <ion-select name='g' [(ngModel)]='assetDb.Cube' interface="popover" >
+                    <ion-option *ngFor="let c of cube | async" value= {{c.Name}}> <h2>{{c.Name}}</h2>
+                      <br>
+                      <p>{{c.Location}}</p>
+                    </ion-option>
+                    
+                  </ion-select>
+                </ion-item>
+            </form>
+              <button ion-button color="test3" outline align="center">ADD PERIPHERAL</button>
 
 </ion-content>

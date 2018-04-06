@@ -1,38 +1,29 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="arrow-back"></ion-icon>
+  <ion-navbar color="darkest">
+    <ion-title>Add Tag</ion-title>
+    <ion-buttons end (click)="addTag(form)">
+      <button ion-button>
+        <span ion-text color="lightest" showWhen="ios">Done</span>
+        <ion-icon name="md-checkmark" showWhen="android, windows"></ion-icon>
       </button>
-      <ion-title >Tags</ion-title>
-    </ion-navbar>
-  </ion-header>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding>
-    <ion-list>
-        <ion-item-sliding>
+    <ion-grid>
+      <ion-row>
+        <ion-col (click)="openColorPicker()">
+          <div class="currentColor" [ngStyle]="{'background-color': tag.color.base, 'color':tag.color.contrast}">
+            Change Color
+          </div>
+        </ion-col>
+        <ion-col>
           <ion-item>
-            <ion-avatar item-start>
-              <img src="../../assets/imgs/logo.png">
-            </ion-avatar>
-            <h2>Kenneth M. Carolino</h2>
+            <ion-label stacked>Tag Name</ion-label>
+            <ion-input type="text" placeholder="Tag Name" [(ngModel)]="tag.name" name="name" required></ion-input>
           </ion-item>
-          <ion-item-options side="right">
-              <button ion-button color="green">
-                  <ion-icon name="create"></ion-icon>
-                  Edit
-                </button>
-            <button ion-button color="danger">
-              <ion-icon name="trash"></ion-icon>
-              Delete
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-list>
-      
-      <ion-fab right bottom>
-        <button ion-fab color="secondary"><ion-icon name="arrow-dropup-circle"></ion-icon></button>
-        <ion-fab-list side="top">
-          <button ion-fab><ion-icon name="add-circle"></ion-icon></button>
-        </ion-fab-list>
-      </ion-fab>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-content>

@@ -13,10 +13,19 @@ $colors: (
   danger:     #f53d3d,
   light:      #ffffff,
   dark:       #222,
-  success:    #00ff00
+  success:    #00ff00,
+  test:       #fc6a03,
+  test2:      #223b33,
+  test3:      #21f965
 );
 
-//Header
-$toolbar-background: color($colors, secondary);
-$header: color($colors, secondary);
+//Modifed Variables
+$toolbar-background: color($colors, dark);
+$header: color($colors, test2);
+$background-color: color($colors, test2);
+$list-background-color: color($colors, test2);
+$list-text-color: color($colors, test3);
+$item-text-color: color($colors, test3);
+$button-text-color: color($colors, test3);
+$toolbar-md-title-text-color: color($colors, test3);
 

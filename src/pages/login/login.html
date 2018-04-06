@@ -4,20 +4,20 @@
         </ion-navbar>
 </ion-header>
 <ion-content padding align="center">
-    <button ion-button color="dark" (click)="loginest()">Log-in</button>
-    <button ion-button color="dark" (click)="loginfp()" *ngIf=fpScanner>Fingerprint Login using fingerprint-aio</button>
+    
 <form>
     <ion-item (submit)="login(creds)">
         <ion-label floating>Email Address</ion-label>
-        <ion-input name="first" type="email" [(ngModel)]="creds.user"></ion-input>
+        <ion-input name="first" type="email" autocomplete [(ngModel)]="creds.user"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label floating>Password</ion-label>
-        <ion-input name="second" type="password" [(ngModel)]="creds.pass"></ion-input>
+        <ion-input name="second" type="password" autocomplete  [(ngModel)]="creds.pass"></ion-input>
       </ion-item>
     
       <button ion-button (click)="login(creds)">Login</button>
       <button ion-button color="light" [navPush]="pushPage">Register</button>
     </form>
+    <button ion-button color="dark" (click)="loginest()">Log-in</button>
 </ion-content>
