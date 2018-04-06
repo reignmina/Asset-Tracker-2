@@ -211,7 +211,6 @@ export class RegisterPhonePage {
   }
 
   private doLogin() {
-    console.log('login d0i');
     this.navCtrl.setRoot(HomePage);
   }
   

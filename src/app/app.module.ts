@@ -82,6 +82,7 @@ export const firebaseConfig = {
     ConfCredsPage,
     ProfileDetailsPage,
     RegisterPhonePage
+
   ],
   imports: [
     BrowserModule,
