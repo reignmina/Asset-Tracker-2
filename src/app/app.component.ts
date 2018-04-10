@@ -34,32 +34,32 @@ export class MyApp {
   rootPage: any = LoginPage;
   pushPage: any = ProfilePage;
   pages: Array<{ icon: string; letter: string; title: string; component: any }>;
-  public items: any;
-  public searchTerm: string = "";
+  private items: any;
+  private searchTerm: string = "";
   constructor(
-    public platform: Platform,
-    public min: AppMinimize,
-    public toastCtrl: ToastController,
-    public statusBar: StatusBar,
-    public splashScreen: SplashScreen,
+    private platform: Platform,
+    private min: AppMinimize,
+    private toastCtrl: ToastController,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
     private afAuth: AngularFireAuth,
-    public dataService: DataProvider,
-    public vibrate: Vibration
+    private dataService: DataProvider,
+    private vibrate: Vibration
   ) {
     this.initializeApp();
     this.pages = [
-      { icon: "people",  letter: "",  title: "People",            component: PeoplePage },
-      { icon: "star",    letter: "",  title: "Custodian",         component: CustodianPage },
-      { icon: "desktop", letter: "",  title: "Assets",            component: AssetsPage },
-      { icon: "flower",  letter: "",  title: "Peripherals",       component: PeripheralsPage },
-      { icon: "pricetag",letter: "",  title: "Tags",              component: TagsPage },
-      { icon: "pie",     letter: "",  title: "Projects",          component: ProjectsPage },
-      { icon: "",        letter: "T", title: "Types",             component: TypesPage },
-      { icon: "",        letter: "B", title: "Brands",            component: BrandsPage },
-      { icon: "compass", letter: "",  title: "Cubes",             component: CubesPage },
-      { icon: "",        letter: "O", title: "Operating Systems", component: OsPage },
-      { icon: "list",    letter: "",  title: "Logs",              component: LogsPage },
-      { icon: "people",  letter: "",  title: "Requests",          component: ConfCredsPage },
+      { icon: "people",  letter: "",  title: "People",            component: PeoplePage         },
+      { icon: "star",    letter: "",  title: "Custodian",         component: CustodianPage      },
+      { icon: "desktop", letter: "",  title: "Assets",            component: AssetsPage         },
+      { icon: "flower",  letter: "",  title: "Peripherals",       component: PeripheralsPage    },
+      { icon: "pricetag",letter: "",  title: "Tags",              component: TagsPage           },
+      { icon: "pie",     letter: "",  title: "Projects",          component: ProjectsPage       },
+      { icon: "",        letter: "T", title: "Types",             component: TypesPage          },
+      { icon: "",        letter: "B", title: "Brands",            component: BrandsPage         },
+      { icon: "compass", letter: "",  title: "Cubes",             component: CubesPage          },
+      { icon: "",        letter: "O", title: "Operating Systems", component: OsPage             },  
+      { icon: "list",    letter: "",  title: "Logs",              component: LogsPage           },
+      { icon: "people",  letter: "",  title: "Requests",          component: ConfCredsPage      },
       { icon: "people",  letter: "",  title: "Profile",           component: ProfileDetailsPage }
     ];
 
@@ -71,7 +71,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
       console.log(this.pages);
       this.setFilteredItems();
@@ -79,6 +79,7 @@ export class MyApp {
   }
 
   openPage(page) {
+    accType = 'user';
     if (page.component == ConfCredsPage || page.component == CubesPage) {
       var accType = this.afAuth.auth.currentUser.displayName;
       if (accType == "admin") {
@@ -92,7 +93,7 @@ export class MyApp {
 
         toast.present(); this.vibrate.vibrate(250);
       }
-    } else {
+   } else {
       this.nav.push(page.component);
     }
   }

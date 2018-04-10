@@ -86,11 +86,7 @@ try{
           duration: 3000,
           position: 'top'
         });
-      
-        toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
-        });
-      
+       
         toast.present() 
       }
     
@@ -104,10 +100,6 @@ try{
       position: 'top'
     });
   
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-  
     toast.present()
   }
 
@@ -119,9 +111,7 @@ try{
       position: 'top'
     });
   
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
+
   
     toast.present()
   }
@@ -134,10 +124,6 @@ try{
       position: 'top'
     });
   
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-  
     toast.present()
   }
   else{
@@ -146,11 +132,6 @@ try{
       duration: 3000,
       position: 'top'
     });
-  
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-  
     toast.present()
   
   }
@@ -162,9 +143,6 @@ try{
       position: 'top'
     });
   
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
   
     toast.present()
 

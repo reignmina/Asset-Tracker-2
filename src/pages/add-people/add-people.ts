@@ -23,18 +23,18 @@ import { Vibration } from "@ionic-native/vibration";
 })
 export class AddPeoplePage {
   @ViewChild(Nav) nav: Nav;
-  public peopleRef: AngularFireList<any>;
+  private peopleRef: AngularFireList<any>;
   people: Observable<any[]>;
   peopleaf = {} as People;
   addperson = { firstname: "", middlename: "", lastname: "", eid: "" };
-  public img: string;
-  public stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
+  private img: string;
+  private stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
 
   constructor(
     
-    public navCtrl: NavController,
-    public platform: Platform,
-    public navParams: NavParams,
+    private navCtrl: NavController,
+    private platform: Platform,
+    private navParams: NavParams,
     private menu: MenuController,
     private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController,
@@ -84,10 +84,6 @@ export class AddPeoplePage {
           message: "First and Last names and EID are required",
           duration: 3000,
           position: "top"
-        });
-      
-        toast.onDidDismiss(() => {
-          console.log("Dismissed toast");
         });
         toast.present(); this.vibration.vibrate(250);
       }

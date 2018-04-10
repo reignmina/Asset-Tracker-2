@@ -89,10 +89,6 @@ export class AddAssetPage {
       duration: 3000,
       position: "top"
     });
-
-    toast.onDidDismiss(() => {
-      console.log("Dismissed toast");
-    });
     this.navCtrl.pop();
     toast.present(); this.vibration.vibrate(250);
   }
