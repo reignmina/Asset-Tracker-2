@@ -22,12 +22,14 @@ export class RegisterUserPage {
 
   public userRef : AngularFireList<any>
   newUser : Observable<any[]>;
-  creds = {} as Login;
+  creds = {} as Register;
   checkEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, public afDatabase: AngularFireDatabase, private toastCtrl: ToastController, public afAuth: AngularFireAuth) {
     this.userRef = this.afDatabase.list('/Authlist');
     // this.newUser = this.userRef.valueChanges;
+    this.creds.type = 'user'  ;
 
     
   }
@@ -97,7 +99,7 @@ try{
   else if(creds.pass != creds.passCon){
 
     let toast = this.toastCtrl.create({
-      message: 'Passwords did not match with each other. try again',
+      message: 'Passwords did not match. Try again',
       duration: 3000,
       position: 'top'
     });

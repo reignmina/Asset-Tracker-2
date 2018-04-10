@@ -13,6 +13,7 @@ import { RegisterUserPage } from "../register-user/register-user";
 import { Vibration } from "@ionic-native/vibration";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
 import { RegisterPhonePage } from "../register-phone/register-phone";
+import { ResetPassPage } from "../reset-pass/reset-pass";
 
 @IonicPage()
 @Component({
@@ -40,6 +41,10 @@ export class LoginPage {
     this.pushPage = RegisterUserPage;
   }
 
+  resetPass(){
+    this.navCtrl.push(ResetPassPage);
+  }
+  
   loginest() {
     this.navCtrl.setRoot(HomePage);
   }
