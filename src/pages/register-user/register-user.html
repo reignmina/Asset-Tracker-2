@@ -6,27 +6,27 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding align='center'>
 
   <ion-list inset>
 
   <ion-item>
-    <ion-label>Firstname</ion-label>
+    <ion-label>First Name</ion-label>
     <ion-input [(ngModel)]='creds.firstname' type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label>Middlename</ion-label>
-      <ion-input [(ngModel)]='creds.middlename' type="text"></ion-input>
+      <ion-label>Middle Name</ion-label>
+      <ion-input [(ngModel)]='creds.middlename' type="text" value=''></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label>Lastname</ion-label>
+      <ion-label>Last Name</ion-label>
       <ion-input [(ngModel)]='creds.lastname' type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label>Email</ion-label>
+      <ion-label>E-Mail Address</ion-label>
       <ion-input [(ngModel)]='creds.email' type="email"></ion-input>
   </ion-item>
 
@@ -52,7 +52,7 @@
     <ion-option value="admin">Admin</ion-option>
   </ion-select>
 </ion-item>
-
+<br>
   <button ion-button color='dark' (click)="register(creds)">Register</button>
 </ion-list>
 

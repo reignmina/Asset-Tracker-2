@@ -11,8 +11,8 @@
 <ion-content padding align="center">
   <form>
     <ion-item (submit)="resetPass(email)">
-        <ion-label floating>Enter the E-Mail address associated with your account.</ion-label>
-        <ion-input name="first" type="email" placeholder='E-Mail Address' autocomplete [(ngModel)]="value"></ion-input>
+        <ion-label floating>E-Mail Address</ion-label>
+        <ion-input name="first" type="email" placeholder='Enter the E-Mail address associated with your account.' autocomplete [(ngModel)]="value"></ion-input>
       </ion-item>
       <br>
       <button ion-button (click)="resetPass()">Send Password Reset E-Mail</button>

@@ -38,7 +38,8 @@ export class AddAssetPage {
     private menu: MenuController,
     private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController,
-    private camera: Camera, private vibration: Vibration,
+    private camera: Camera, 
+    private vibration: Vibration,
   ) {
     this.assetRef = this.afDatabase.list("/Assets");
     this.assets = this.assetRef.valueChanges();

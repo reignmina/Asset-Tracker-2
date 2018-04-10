@@ -16,13 +16,6 @@ import { storage } from "firebase";
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { Vibration } from "@ionic-native/vibration";
 
-/**
- * Generated class for the AddPeoplePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: "page-add-people",
@@ -67,7 +60,7 @@ export class AddPeoplePage {
     console.log("ionViewDidLoad AddPeoplePage");
   }
   ionViewDidEnter() {
-    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
+    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );
 
     // If you have more than one side menu, use the id like below
     // this.menu.swipeEnable(false, 'menu1');
@@ -111,7 +104,7 @@ export class AddPeoplePage {
         img: this.stock
       });
       let toast = this.toastCtrl.create({
-        message: "User was added successfully",
+        message: "Person was added successfully",
         duration: 3000,
         position: "top"
       });
@@ -133,10 +126,9 @@ export class AddPeoplePage {
       img: data.downloadURL
     });
   });
-
     
   let toast = this.toastCtrl.create({
-    message: "User was added successfully",
+    message: "Person was added successfully",
     duration: 3000,
     position: "top"
   });
@@ -148,7 +140,6 @@ export class AddPeoplePage {
   }
  }
 }
-
 
   async takePic() {
     try {
