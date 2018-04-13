@@ -47,7 +47,8 @@ export class MyApp {
     private vibrate: Vibration
   ) {
     this.initializeApp();
-    this.pages = [
+    this.pages = 
+    [
       { icon: "people",  letter: "",  title: "People",            component: PeoplePage         },
       { icon: "star",    letter: "",  title: "Custodian",         component: CustodianPage      },
       { icon: "desktop", letter: "",  title: "Assets",            component: AssetsPage         },
