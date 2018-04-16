@@ -16,13 +16,6 @@ import { storage } from "firebase";
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { Vibration } from "@ionic-native/vibration";
 
-/**
- * Generated class for the AddPeoplePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: "page-add-people",
@@ -30,18 +23,18 @@ import { Vibration } from "@ionic-native/vibration";
 })
 export class AddPeoplePage {
   @ViewChild(Nav) nav: Nav;
-  public peopleRef: AngularFireList<any>;
+  private peopleRef: AngularFireList<any>;
   people: Observable<any[]>;
   peopleaf = {} as People;
   addperson = { firstname: "", middlename: "", lastname: "", eid: "" };
-  public img: string;
-  public stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
+  private img: string;
+  private stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
 
   constructor(
     
-    public navCtrl: NavController,
-    public platform: Platform,
-    public navParams: NavParams,
+    private navCtrl: NavController,
+    private platform: Platform,
+    private navParams: NavParams,
     private menu: MenuController,
     private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController,
@@ -59,7 +52,7 @@ export class AddPeoplePage {
 
     this.platform.registerBackButtonAction(() => {
       console.log("Minimized");
-      this.nav.pop();
+      this.navCtrl.pop();
     });
   }
 
@@ -67,7 +60,7 @@ export class AddPeoplePage {
     console.log("ionViewDidLoad AddPeoplePage");
   }
   ionViewDidEnter() {
-    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
+    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );
 
     // If you have more than one side menu, use the id like below
     // this.menu.swipeEnable(false, 'menu1');
@@ -92,10 +85,6 @@ export class AddPeoplePage {
           duration: 3000,
           position: "top"
         });
-      
-        toast.onDidDismiss(() => {
-          console.log("Dismissed toast");
-        });
         toast.present(); this.vibration.vibrate(250);
       }
       
@@ -111,7 +100,7 @@ export class AddPeoplePage {
         img: this.stock
       });
       let toast = this.toastCtrl.create({
-        message: "User was added successfully",
+        message: "Person was added successfully",
         duration: 3000,
         position: "top"
       });
@@ -133,10 +122,9 @@ export class AddPeoplePage {
       img: data.downloadURL
     });
   });
-
     
   let toast = this.toastCtrl.create({
-    message: "User was added successfully",
+    message: "Person was added successfully",
     duration: 3000,
     position: "top"
   });
@@ -148,7 +136,6 @@ export class AddPeoplePage {
   }
  }
 }
-
 
   async takePic() {
     try {

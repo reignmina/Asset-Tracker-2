@@ -34,7 +34,7 @@ export class ProfilePage {
   }
   
   ionViewDidEnter() {
-    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
+    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );
   }
   
   ionViewWillLeave() {
@@ -61,9 +61,6 @@ export class ProfilePage {
             position: "top"
           });
           
-          toast.onDidDismiss(() => {
-            console.log("Dismissed toast");
-          });
           toast.present(); this.vibration.vibrate(250);
 
         } 
@@ -74,9 +71,6 @@ export class ProfilePage {
             position: "top"
           });
           
-          toast.onDidDismiss(() => {
-            console.log("Dismissed toast");
-          });
           toast.present(); this.vibration.vibrate(250);
         }
 
@@ -87,9 +81,6 @@ export class ProfilePage {
             position: "top"
           });
           
-          toast.onDidDismiss(() => {
-            console.log("Dismissed toast");
-          });
           toast.present(); this.vibration.vibrate(250);
         }
        else {

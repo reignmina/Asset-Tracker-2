@@ -14,7 +14,7 @@
             <p>{{p.EID}}</p>
           </button>
 
-        <ion-item-options side="right">
+        <ion-item-options side="right" *ngIf="fafe == 'admin'">
             <button ion-button color="success" (click)='editPerson(p.First_name, p.Middle_name, p.Last_name, p.EID, p.img, p.id)'>
                 <ion-icon name="create" ></ion-icon>
                 Edit
@@ -30,6 +30,6 @@
 
     <ion-fab right bottom>
         <button ion-fab color="secondary" [navPush]="pushPage"><ion-icon name="add"></ion-icon></button>
-      </ion-fab>
+      </ion-fab>  
   </ion-content>
   

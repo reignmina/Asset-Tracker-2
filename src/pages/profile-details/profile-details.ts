@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { IonicPage, MenuController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { ProfilePage } from '../profile/profile';
 
-import { ProfilePage } from '../profile/profile'
-/**
- * Generated class for the ProfileDetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -23,8 +17,8 @@ export class ProfileDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public toastCtrl: ToastController, public afAuth: AngularFireAuth) {
  this.details=[
    {email: this.afAuth.auth.currentUser.email,
-    name: this.afAuth.auth.currentUser.displayName,
-    img: this.afAuth.auth.currentUser.photoURL}
+    name:  this.afAuth.auth.currentUser.displayName,
+    img:   this.afAuth.auth.currentUser.photoURL}
   ]
   }
 
@@ -49,4 +43,6 @@ export class ProfileDetailsPage {
   changePass(){
     this.navCtrl.push(ProfilePage);
   }
+
+  
 }

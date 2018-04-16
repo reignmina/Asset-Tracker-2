@@ -14,7 +14,7 @@
         </ion-avatar>
       <ion-item-options side="right">
 
-        <button ion-button color="success" (click)='approveUser(c.User, c.Pass, c.id)'>
+        <button ion-button color="success" (click)='approveUser(c.User, c.Pass, c.id,c.firstname, c.middlename, c.lastname, c.phone, c.type)'>
           <ion-icon name="checkmark"></ion-icon>
           Approve
         </button>
@@ -25,5 +25,8 @@
 
       </ion-item-options>
     </ion-item-sliding>
+
+    <ion-item *ngIf='(credList | async) == 0' > <h1 align='center' >There are currently no pending requests. </h1></ion-item>
   </ion-list>
+
 </ion-content>

@@ -1,34 +1,59 @@
-<!--
-  Generated template for the RegisterUserPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-    <ion-navbar>
-      <ion-title>Registration Page</ion-title>
-    </ion-navbar>
+
+  <ion-navbar>
+    <ion-title>Registration Page</ion-title>
+  </ion-navbar>
+
 </ion-header>
 
-
 <ion-content padding align='center'>
-<form>
-  <ion-item (submit)="login(creds)">
-    <ion-label floating>Email Address</ion-label>
-    <ion-input name="first" type="email" [(ngModel)]="creds.user"></ion-input>
+
+  <ion-list inset>
+
+  <ion-item>
+    <ion-label>First Name</ion-label>
+    <ion-input [(ngModel)]='creds.firstname' type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input name="second" type="password" [(ngModel)]="creds.pass"></ion-input>
+      <ion-label>Middle Name</ion-label>
+      <ion-input [(ngModel)]='creds.middlename' type="text" value=''></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label floating>Confirm Password</ion-label>
-      <ion-input name="third" type="password" [(ngModel)]="creds.confirmPass"></ion-input>
-    </ion-item>
-  
-</form>
+      <ion-label>Last Name</ion-label>
+      <ion-input [(ngModel)]='creds.lastname' type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>E-Mail Address</ion-label>
+      <ion-input [(ngModel)]='creds.email' type="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input [(ngModel)]='creds.pass' type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>Confirm Password</ion-label>
+      <ion-input [(ngModel)]='creds.passCon' type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Phone Number</ion-label>
+    <ion-input [(ngModel)]='creds.phone' type="tel" placeholder="e.g +639123456789"></ion-input>
+  </ion-item>
+
+  <ion-item>
+  <ion-label>Account Type</ion-label>
+  <ion-select [(ngModel)]="creds.type" interface="popover" selected="user">
+    <ion-option value="user">User</ion-option>
+    <ion-option value="admin">Admin</ion-option>
+  </ion-select>
+</ion-item>
 <br>
-<button ion-button color="primary" (click)="register(creds)">Register</button>
+  <button ion-button color='dark' (click)="register(creds)">Register</button>
+</ion-list>
+
 </ion-content>

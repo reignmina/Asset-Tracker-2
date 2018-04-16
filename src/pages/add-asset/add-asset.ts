@@ -38,7 +38,8 @@ export class AddAssetPage {
     private menu: MenuController,
     private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController,
-    private camera: Camera, private vibration: Vibration,
+    private camera: Camera, 
+    private vibration: Vibration,
   ) {
     this.assetRef = this.afDatabase.list("/Assets");
     this.assets = this.assetRef.valueChanges();
@@ -87,10 +88,6 @@ export class AddAssetPage {
       message: "An Asset was added successfully",
       duration: 3000,
       position: "top"
-    });
-
-    toast.onDidDismiss(() => {
-      console.log("Dismissed toast");
     });
     this.navCtrl.pop();
     toast.present(); this.vibration.vibrate(250);

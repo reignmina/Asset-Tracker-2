@@ -43,6 +43,7 @@ import { Camera } from '@ionic-native/camera';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { Firebase } from '@ionic-native/firebase';
 import { AppMinimize } from '@ionic-native/app-minimize';
+import { ResetPassPage } from '../pages/reset-pass/reset-pass';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCcKH_nF8-a509y7alvz69L1tuVCO6nkHI",
@@ -81,7 +82,8 @@ export const firebaseConfig = {
     ProfilePage,
     ConfCredsPage,
     ProfileDetailsPage,
-    RegisterPhonePage
+    RegisterPhonePage,
+    ResetPassPage
 
   ],
   imports: [
@@ -120,7 +122,8 @@ export const firebaseConfig = {
     ProfilePage,
     ConfCredsPage,
     ProfileDetailsPage,
-    RegisterPhonePage
+    RegisterPhonePage,
+    ResetPassPage
     
   ],
   providers: [
