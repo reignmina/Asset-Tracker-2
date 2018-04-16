@@ -8,6 +8,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import {storage} from 'firebase';
 import { Vibration } from '@ionic-native/vibration';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -20,8 +21,9 @@ export class PeoplePage {
   peopleRef: AngularFireList<any>;
   people: Observable<any[]>;
   pushPage: any;
+  fafe = this.afAuth.auth.currentUser.displayName;
   public stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
-  constructor(public platform: Platform, public navCtrl: NavController, private vibration: Vibration, public navParams: NavParams, private menu: MenuController, public alertCtrl: AlertController, private afDatabase: AngularFireDatabase, public toastCtrl: ToastController)  {
+  constructor(public platform: Platform,private afAuth: AngularFireAuth, public navCtrl: NavController, private vibration: Vibration, public navParams: NavParams, private menu: MenuController, public alertCtrl: AlertController, private afDatabase: AngularFireDatabase, public toastCtrl: ToastController)  {
 
     
     this.selectedPerson = navParams.get('person')
@@ -46,6 +48,7 @@ export class PeoplePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PeoplePage');
     console.log(this.people);
+    console.log(this.fafe);
   }
   ionViewDidEnter() {
     this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );

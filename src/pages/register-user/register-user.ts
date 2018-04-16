@@ -27,6 +27,7 @@ export class RegisterUserPage {
   newUser: Observable<any[]>;
   creds = {} as Register;
   checkEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
 
   constructor(
     public navCtrl: NavController,
@@ -81,7 +82,7 @@ export class RegisterUserPage {
           middlename: creds.middlename,
           lastname: creds.lastname,
           type: creds.type,
-          // photoURL: creds.img
+          photoURL: this.stock,
           phone: creds.phone
         });
 
