@@ -114,7 +114,7 @@ export class LoginPage {
       } catch (e) {
         let toast = this.toastCtrl.create({
           message: e,
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
 
@@ -128,7 +128,7 @@ export class LoginPage {
     } else if ((creds.user == null, creds.pass == null)) {
       let toast = this.toastCtrl.create({
         message: "Fields must not be Empty",
-        duration: 3000,
+        duration: 2500,
         position: "top"
       });
 

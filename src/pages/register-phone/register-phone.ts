@@ -148,7 +148,7 @@ export class RegisterPhonePage {
       error => {
         let toast = this.toastCtrl.create({
           message: error,
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
   

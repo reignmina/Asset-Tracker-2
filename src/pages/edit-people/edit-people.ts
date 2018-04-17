@@ -71,7 +71,7 @@ export class EditPeoplePage {
 
            let toast = this.toastCtrl.create({
             message: 'Picture Deleted',
-            duration: 3000,
+            duration: 2500,
             position: 'top'
           });
           toast.present(); this.vibration.vibrate(250);
@@ -103,7 +103,7 @@ export class EditPeoplePage {
 
             let toast = this.toastCtrl.create({
               message: 'Picture Deleted',
-              duration: 3000,
+              duration: 2500,
               position: 'top'
             });
             toast.present(); this.vibration.vibrate(250);
@@ -177,7 +177,7 @@ else {
 
     let toast = this.toastCtrl.create({
       message: 'User info was successfully updated',
-      duration: 3000,
+      duration: 2500,
       position: 'top'
     });
 

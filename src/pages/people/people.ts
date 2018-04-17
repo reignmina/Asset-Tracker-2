@@ -89,7 +89,7 @@ export class PeoplePage {
               }
       let toast = this.toastCtrl.create({
         message: 'User was successfully deleted',
-        duration: 3000,
+        duration: 2500,
         position: 'top'
       });
     

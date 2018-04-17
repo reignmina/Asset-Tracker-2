@@ -26,7 +26,6 @@ export class AddPeoplePage {
   private peopleRef: AngularFireList<any>;
   people: Observable<any[]>;
   peopleaf = {} as People;
-  addperson = { firstname: "", middlename: "", lastname: "", eid: "" };
   private img: string;
   private stock: string = 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
 
@@ -43,12 +42,6 @@ export class AddPeoplePage {
   ) {
     this.peopleRef = this.afDatabase.list("/People");
     this.people = this.peopleRef.valueChanges();
-    this.addperson = {
-      firstname: this.peopleaf.firstname,
-      middlename: this.peopleaf.middlename,
-      lastname: this.peopleaf.lastname,
-      eid: this.peopleaf.eid
-    };
 
     this.platform.registerBackButtonAction(() => {
       console.log("Minimized");
@@ -82,7 +75,7 @@ export class AddPeoplePage {
       if ((peopleaf.firstname || peopleaf.lastname || peopleaf.personID) == undefined){
         let toast = this.toastCtrl.create({
           message: "First and Last names and EID are required",
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
         toast.present(); this.vibration.vibrate(250);
@@ -101,7 +94,7 @@ export class AddPeoplePage {
       });
       let toast = this.toastCtrl.create({
         message: "Person was added successfully",
-        duration: 3000,
+        duration: 2500,
         position: "top"
       });
     
@@ -125,7 +118,7 @@ export class AddPeoplePage {
     
   let toast = this.toastCtrl.create({
     message: "Person was added successfully",
-    duration: 3000,
+    duration: 2500,
     position: "top"
   });
 

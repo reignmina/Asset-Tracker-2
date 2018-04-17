@@ -88,7 +88,7 @@ export class MyApp {
       } else {
         let toast = this.toastCtrl.create({
           message: "Sorry, This page is unavailable for your access level.",
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
 

@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
-
-/**
- * Generated class for the ProjectsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, MenuController, AlertController, ToastController } from 'ionic-angular';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs';
+import { Vibration } from '@ionic-native/vibration';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -15,22 +12,94 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 })
 export class ProjectsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
+  projRef: AngularFireList<any>;
+  proj: Observable<any[]>;
+  fafe = this.afAuth.auth.currentUser.displayName;
+  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private toastCtrl: ToastController, private vibration: Vibration, public alertCtrl: AlertController, public navParams: NavParams, private menu: MenuController, private afDb: AngularFireDatabase) {
+   this.projRef = this.afDb.list('Assets/data/Projects');
+   this.proj = this.projRef.valueChanges()  ;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsPage');
   }
   ionViewDidEnter() {
-    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
-  
-    // If you have more than one side menu, use the id like below
-    // this.menu.swipeEnable(false, 'menu1');
+    this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );
   }
   
   ionViewWillLeave() {
-    // Don't forget to return the swipe to normal, otherwise 
-    // the rest of the pages won't be able to swipe to open menu
     this.menu.swipeEnable(true);
+    }
+
+    addProj() {
+      const newProj = this.projRef.push({});
+
+      let prompt = this.alertCtrl.create({
+        title: 'Add Project',
+        message: "Enter the Project Name",
+        inputs: [
+          {
+            name: 'name',
+            placeholder: 'Name'
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: data => {
+              console.log(data.name);
+              
+            }
+          },
+          {
+            text: 'Add',
+            handler: data => {
+              newProj.set({
+                id: newProj.key,
+                name: data.name
+            });
+            let toast = this.toastCtrl.create({
+              message: "Project Added.",
+              duration: 2500,
+              position: "top"
+            });
+            toast.present();
+            this.vibration.vibrate(250);
+            }
+          }
+        ]
+      });
+      prompt.present();
+    }
+
+    removeProj(p) {
+      let confirm = this.alertCtrl.create({
+        title: 'Delete?',
+        message: 'Do you really want to delete this Project?',
+        buttons: [
+          {
+            text: 'Cancel',
+             
+            handler: () => {
+
+              console.log('Prompt Canceled');
+            }
+          },
+          {
+            text: 'Delete',
+            handler: () => {
+                this.projRef.remove(p);
+
+      let toast = this.toastCtrl.create({
+        message: 'Project removed.',
+        duration: 2500,
+        position: 'top'
+      });
+      toast.present(); this.vibration.vibrate(250);
+    }
+          }
+        ]
+      });
+      confirm.present();
     }
 }

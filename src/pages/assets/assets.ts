@@ -39,7 +39,7 @@ export class AssetsPage {
   ) {
     this.selectedAsset = navParams.get("asset");
     this.pushPage = AddAssetPage;
-    this.assetRef = this.afDatabase.list("/Assets");
+    this.assetRef = this.afDatabase.list("/Assets/items");
     this.assets = this.assetRef.valueChanges();
   }
 
