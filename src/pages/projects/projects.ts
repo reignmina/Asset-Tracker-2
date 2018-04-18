@@ -17,7 +17,7 @@ export class ProjectsPage {
   fafe = this.afAuth.auth.currentUser.displayName;
   constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private toastCtrl: ToastController, private vibration: Vibration, public alertCtrl: AlertController, public navParams: NavParams, private menu: MenuController, private afDb: AngularFireDatabase) {
    this.projRef = this.afDb.list('Assets/data/Projects');
-   this.proj = this.projRef.valueChanges()  ;
+   this.proj = this.projRef.valueChanges();
   }
 
   ionViewDidLoad() {
@@ -56,7 +56,7 @@ export class ProjectsPage {
             handler: data => {
               newProj.set({
                 id: newProj.key,
-                name: data.name
+                Name: data.name
             });
             let toast = this.toastCtrl.create({
               message: "Project Added.",

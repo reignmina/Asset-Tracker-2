@@ -9,9 +9,11 @@
 
 <ion-list >
   <ion-item-sliding  *ngFor='let o of os | async'>
-    <h2 ion-item>{{o.Name}}</h2>
-    <p>{{o.version}}</p>
-    <p>{{o.edition}}</p>
+    <ion-item item-start>
+      <h2>{{o.Name}}</h2>
+      <p>{{o.version}}</p>
+      <p>{{o.edition}}</p>
+      </ion-item>
   
 
     <ion-item-options side="right" *ngIf="fafe == 'admin'" >

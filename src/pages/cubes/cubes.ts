@@ -96,7 +96,7 @@ export class CubesPage {
                 this.cubeRef.remove(name);
 
       let toast = this.toastCtrl.create({
-        message: 'Operating System removed.',
+        message: 'Location removed.',
         duration: 2500,
         position: 'top'
       });

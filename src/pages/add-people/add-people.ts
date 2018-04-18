@@ -65,7 +65,7 @@ export class AddPeoplePage {
     this.menu.swipeEnable(true);
   }
 
-  addPerson(peopleaf: People) {
+ async addPerson(peopleaf: People) {
     const newpeople = this.peopleRef.push({});
 
     console.log(this.peopleaf);
@@ -101,7 +101,7 @@ export class AddPeoplePage {
       toast.onDidDismiss(() => {
         console.log("Dismissed toast");
       });
-      this.navCtrl.pop();
+      await this.navCtrl.pop();
       toast.present(); this.vibration.vibrate(250);
     }
     else{

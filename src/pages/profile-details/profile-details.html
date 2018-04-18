@@ -4,13 +4,16 @@
   </ion-navbar>
 </ion-header>
 
-<div *ngIf="afAuth.authState | async as authUser">
-  <h1>{{authUser.email}}</h1>
-  <h1>{{authUser.displayName}}</h1>
-  <pre>{{authUser | json}}</pre>
-</div>
+
 
 <ion-content padding align="center">
+
+    <div *ngIf="afAuth.authState | async as authUser">
+        <h1>{{authUser.email}}</h1>
+        <h1>{{authUser.displayName}}</h1>
+        <pre>{{authUser | json}}</pre>
+      </div>
+      
   <ion-list no-line *ngFor="let d of details">
      
     <ion-item>
