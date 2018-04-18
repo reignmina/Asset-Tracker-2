@@ -26,21 +26,6 @@
   </ion-item>
 
   <ion-item>
-      <ion-label>E-Mail Address</ion-label>
-      <ion-input [(ngModel)]='creds.email' type="email"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Password</ion-label>
-    <ion-input [(ngModel)]='creds.pass' type="password"></ion-input>
-  </ion-item>
-
-  <ion-item>
-      <ion-label>Confirm Password</ion-label>
-      <ion-input [(ngModel)]='creds.passCon' type="password"></ion-input>
-  </ion-item>
-
-  <ion-item>
     <ion-label>Phone Number</ion-label>
     <ion-input [(ngModel)]='creds.phone' type="tel" placeholder="e.g +639123456789"></ion-input>
   </ion-item>
@@ -53,7 +38,23 @@
   </ion-select>
 </ion-item>
 <br>
+<br>
+<ion-item>
+  <ion-label>E-Mail Address</ion-label>
+  <ion-input [(ngModel)]='creds.email' type="email"></ion-input>
+</ion-item>
+
+<ion-item>
+<ion-label>Password</ion-label>
+<ion-input [(ngModel)]='creds.pass' type="password"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Confirm Password</ion-label>
+  <ion-input [(ngModel)]='creds.passCon' type="password"></ion-input>
+</ion-item>
   <button ion-button color='dark' (click)="register(creds)">Register</button>
 </ion-list>
+
 
 </ion-content>

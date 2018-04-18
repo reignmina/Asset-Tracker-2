@@ -90,7 +90,7 @@ export class RegisterUserPage {
         let toast = this.toastCtrl.create({
           message:
             "Request sent. Please wait for your account to be authorized.",
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
 
@@ -98,7 +98,7 @@ export class RegisterUserPage {
       } else if (creds.pass != creds.passCon) {
         let toast = this.toastCtrl.create({
           message: "Passwords did not match. Try again",
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
 
@@ -106,7 +106,7 @@ export class RegisterUserPage {
       } else if (creds.email.search(this.checkEmail) == -1) {
         let toast = this.toastCtrl.create({
           message: "Please enter a valid email",
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
 
@@ -114,7 +114,7 @@ export class RegisterUserPage {
       } else if (creds.pass.length < 6) {
         let toast = this.toastCtrl.create({
           message: "Password should be atleast 6 characters.",
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
 
@@ -122,7 +122,7 @@ export class RegisterUserPage {
       } else {
         let toast = this.toastCtrl.create({
           message: "Fill in all fields",
-          duration: 3000,
+          duration: 2500,
           position: "top"
         });
         toast.present();
@@ -130,7 +130,7 @@ export class RegisterUserPage {
     } catch (e) {
       let toast = this.toastCtrl.create({
         message: "Fill in all fields",
-        duration: 3000,
+        duration: 2500,
         position: "top"
       });
 

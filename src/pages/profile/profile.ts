@@ -57,7 +57,7 @@ export class ProfilePage {
         if ( newPass == Pass ) {
           let toast = this.toastCtrl.create({
             message: "New Password must not be the same as the Old Password",
-            duration: 3000,
+            duration: 2500,
             position: "top"
           });
           
@@ -67,7 +67,7 @@ export class ProfilePage {
         else if (newPass != newPassConf ) {
           let toast = this.toastCtrl.create({
             message: "Passwords do not match. Please try again.",
-            duration: 3000,
+            duration: 2500,
             position: "top"
           });
           
@@ -77,7 +77,7 @@ export class ProfilePage {
         else if (Pass == '' || newPass == '' || newPassConf == '') {
           let toast = this.toastCtrl.create({
             message: "Fill up the Required Fields.",
-            duration: 3000,
+            duration: 2500,
             position: "top"
           });
           
@@ -89,7 +89,7 @@ export class ProfilePage {
             
             let toast = this.toastCtrl.create({
               message: "Password Successfully Changed.",
-              duration: 3000,
+              duration: 2500,
               position: "top"
             });
             
@@ -103,7 +103,7 @@ export class ProfilePage {
             
             let toast = this.toastCtrl.create({
               message: e,
-              duration: 3000,
+              duration: 2500,
               position: "top"
             });
             
@@ -117,7 +117,7 @@ export class ProfilePage {
     } catch (e) {
       let toast = this.toastCtrl.create({
         message: "Old Password is incorrect. Please try again",
-        duration: 3000,
+        duration: 2500,
         position: "top"
       });
       

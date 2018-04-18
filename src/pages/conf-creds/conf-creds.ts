@@ -91,7 +91,7 @@ export class ConfCredsPage {
             this.credListRef.remove(id);
             let toast = this.toastCtrl.create({
               message: "User Sucessfully Authenticated!",
-              duration: 3000,
+              duration: 2500,
               position: "top"
             });
 
@@ -123,7 +123,7 @@ export class ConfCredsPage {
             this.credListRef.remove(id);
             let toast = this.toastCtrl.create({
               message: "Request Deleted",
-              duration: 3000,
+              duration: 2500,
               position: "top"
             });
 

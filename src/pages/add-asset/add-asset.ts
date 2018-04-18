@@ -86,7 +86,7 @@ export class AddAssetPage {
 
     let toast = this.toastCtrl.create({
       message: "An Asset was added successfully",
-      duration: 3000,
+      duration: 2500,
       position: "top"
     });
     this.navCtrl.pop();

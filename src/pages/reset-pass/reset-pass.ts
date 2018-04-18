@@ -25,7 +25,7 @@ export class ResetPassPage {
   if(this.value == null || undefined){
     let toast = this.toastCtrl.create({
       message: 'E-Mail Address must not be empty.',
-      duration: 3000,
+      duration: 2500,
       position: 'top'
     });
     toast.present(); this.vibration.vibrate(250);
@@ -34,7 +34,7 @@ export class ResetPassPage {
   else if (this.value.search(this.checkEmail) == -1){
     let toast = this.toastCtrl.create({
       message: 'E-Mail Address must be correctly formatted.',
-      duration: 3000,
+      duration: 2500,
       position: 'top'
     });
     toast.present(); this.vibration.vibrate(250);
@@ -45,7 +45,7 @@ export class ResetPassPage {
 
     let toast = this.toastCtrl.create({
       message: 'Password Reset E-Mail sent.',
-      duration: 3000,
+      duration: 2500,
       position: 'top'
     });
     toast.present(); this.vibration.vibrate(250); this.navCtrl.setRoot(LoginPage);
