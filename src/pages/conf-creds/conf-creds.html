@@ -8,12 +8,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let c of credList | async">
-        <ion-avatar ion-item>
-          <ion-icon name="person"></ion-icon>
+        <ion-avatar item-start><ion-icon name="person"></ion-icon></ion-avatar>
           <h3>{{c.User}}</h3>
           <h2>User Type: {{c.type}}</h2>
-        </ion-avatar>
-      <ion-item-options side="righ  t">
+        
+      <ion-item-options side="right">
 
         <button ion-button color="success" (click)='approveUser(c.User, c.Pass, c.id,c.firstname, c.middlename, c.lastname, c.phone, c.type)'>
           <ion-icon name="checkmark"></ion-icon>
