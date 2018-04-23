@@ -37,6 +37,7 @@ export class EditPeoplePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditPeoplePage');
+    console.log(this.editperson);
   }
   ionViewDidEnter() {
     this.menu.swipeEnable(false, 'left' ); this.menu.swipeEnable(false, 'right' );;
@@ -49,6 +50,7 @@ export class EditPeoplePage {
     // Don't forget to return the swipe to normal, otherwise 
     // the rest of the pages won't be able to swipe to open menu
     this.menu.swipeEnable(true);
+    
   }
 
   showConfirmserver(peopleaf: People) {

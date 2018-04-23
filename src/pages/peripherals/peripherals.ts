@@ -35,6 +35,10 @@ export class PeripheralsPage {
     this.menu.swipeEnable(true);
     }
 
+    goHome(){
+      this.navCtrl.setRoot(HomePage);
+    }
+
     addPeriphPage()
     {
       console.log('awlae');
