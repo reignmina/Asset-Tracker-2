@@ -59,9 +59,9 @@ export class ViewCustodianPage {
     this.menu.swipeEnable(true);
     }
 
-    viewAsset(Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Serial, Type, id, img) {
+    viewAsset(Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img) {
       this.navCtrl.push(ViewAssetPage, {
-        Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Serial, Type, id, img
+        Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner,Project, Serial, Type, id, img
       });
     }
 
