@@ -11,6 +11,7 @@ import {
   ToastController
 } from "ionic-angular";
 import { Observable } from "rxjs";
+import { HomePage } from "../home/home";
 
 @IonicPage()
 @Component({
@@ -137,4 +138,9 @@ export class BrandsPage {
     });
     confirm.present();
   }
+
+  goHome(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
 }

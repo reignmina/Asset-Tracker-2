@@ -4,29 +4,38 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from "rxjs";
 import { ViewAssetPage } from '../view-asset/view-asset';
-import { EditPeoplePage } from '../edit-people/edit-people';
 import { HomePage } from '../home/home';
+
+/**
+ * Generated class for the ViewCustodianPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-view-people',
-  templateUrl: 'view-people.html',
+  selector: 'page-view-custodian',
+  templateUrl: 'view-custodian.html',
 })
-export class ViewPeoplePage {
-  persons: Array<{firstname: string, middlename: string, lastname: string, eid: string, img: string, id: string }>;
+export class ViewCustodianPage {
+  
+  persons: Array<{firstname: string, middlename: string, lastname: string, eid: string, img: string }>;
 
   public assetRef: AngularFireList<any>;
   assets: Observable<any[]>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController, private viewPic: PhotoViewer, private afDatabase: AngularFireDatabase,) {
 
     this.persons =[
       {firstname: navParams.get('firstname'), middlename: navParams.get('middlename'), lastname: navParams.get('lastname'),
-      eid: navParams.get('eid'), img: navParams.get('img'), id: navParams.get('id')}
+      eid: navParams.get('eid'), img: navParams.get('img')}
     ];
 
     this.assetRef = this.afDatabase.list("/Assets/items");
     this.assets = this.assetRef.valueChanges();
   }
+
 
   viewImg(picture){
     this.viewPic.show(picture);
@@ -54,10 +63,6 @@ export class ViewPeoplePage {
       this.navCtrl.push(ViewAssetPage, {
         Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Serial, Type, id, img
       });
-    }
-
-    editPerson(First_name, Middle_name, Last_name, EID, img, id){
-      this.navCtrl.push(EditPeoplePage,{firstname:First_name, middlename:Middle_name, lastname:Last_name, eid:EID, img:img, id:id})
     }
 
     goHome(){

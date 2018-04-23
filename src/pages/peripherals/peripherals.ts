@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the PeripheralsPage page.
@@ -33,4 +34,9 @@ export class PeripheralsPage {
     // the rest of the pages won't be able to swipe to open menu
     this.menu.swipeEnable(true);
     }
+
+    goHome(){
+      this.navCtrl.setRoot(HomePage);
+    }
+
 }

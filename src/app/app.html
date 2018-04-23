@@ -1,12 +1,17 @@
 <ion-menu [content]="content">
   <ion-header id='con'>
       <ion-list no-lines >
-        <button ion-item clear [navPush]="pushPage" id='con'>
+          <div *ngIf="afAuth.authState | async as authUser">
+        <button ion-item clear (click)="goProfile()" id='con'>
+            
+                
             <ion-avatar item-start>
               <img src = 'assets/imgs/logo.png'>
             </ion-avatar>
-            <h2>Kenneth M. Carolino</h2>
+            <h2>{{authUser.email}}</h2>
+           
         </button>
+      </div>
         </ion-list>
   </ion-header>
 

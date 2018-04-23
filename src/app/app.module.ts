@@ -33,7 +33,8 @@ import { ConfCredsPage } from '../pages/conf-creds/conf-creds';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
 import { RegisterPhonePage } from '../pages/register-phone/register-phone';
-
+import { EditAssetPage } from '../pages/edit-asset/edit-asset';
+ 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule} from '@angular/http';
@@ -44,6 +45,8 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { Firebase } from '@ionic-native/firebase';
 import { AppMinimize } from '@ionic-native/app-minimize';
 import { ResetPassPage } from '../pages/reset-pass/reset-pass';
+import { AddCustodianPage } from '../pages/add-custodian/add-custodian';
+import { ViewCustodianPage } from '../pages/view-custodian/view-custodian';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCcKH_nF8-a509y7alvz69L1tuVCO6nkHI",
@@ -83,7 +86,10 @@ export const firebaseConfig = {
     ConfCredsPage,
     ProfileDetailsPage,
     RegisterPhonePage,
-    ResetPassPage
+    ResetPassPage,
+    EditAssetPage, 
+    AddCustodianPage,
+    ViewCustodianPage,
 
   ],
   imports: [
@@ -123,7 +129,10 @@ export const firebaseConfig = {
     ConfCredsPage,
     ProfileDetailsPage,
     RegisterPhonePage,
-    ResetPassPage
+    ResetPassPage,
+    EditAssetPage,
+    AddCustodianPage,
+    ViewCustodianPage,
     
   ],
   providers: [

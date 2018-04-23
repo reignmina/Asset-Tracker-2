@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import {storage} from 'firebase';
 import { Vibration } from '@ionic-native/vibration';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -103,6 +104,10 @@ export class PeoplePage {
         ]
       });
       confirm.present();
+    }
+
+    goHome(){
+      this.navCtrl.setRoot(HomePage);
     }
 
 }
