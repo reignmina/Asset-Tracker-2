@@ -41,6 +41,8 @@ export class EditAssetPage {
   cust: Observable<any[]>;
   modelsRef: AngularFireList<any>;
   models: Observable<any[]>;
+  peripRef: AngularFireList<any>;
+  perip: Observable<any[]>;
   img: string;
   deleteserve: boolean;
   stock: 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
@@ -86,6 +88,8 @@ export class EditAssetPage {
     this.cust = this.custRef.valueChanges();
     this.modelsRef = this.afDatabase.list("Assets/data/Models");
     this.models = this.modelsRef.valueChanges();
+    this.peripRef = this.afDatabase.list("Assets/data/Peripherals");
+    this.perip = this.modelsRef.valueChanges();
   }
 
 
@@ -128,39 +132,45 @@ export class EditAssetPage {
       assetDb.Project = this.currAsset.Project;
     }
 
+    
 
+    console.log("Peripherals:");
+    console.log(this.assetDb.Peripherals);
     console.log("asset DB");
     console.log(this.assetDb);
+    
 
-    this.assetRef.update( this.currAsset.id,{
-      Assignee: assetDb.Assignee,
-      Cube: assetDb.Cube,
-      Hard_Disk: assetDb.HDD,
-      Memory: assetDb.Memory,
-      Model: assetDb.Model,
-      Number: assetDb.Number,
-      OS: assetDb.OS,
-      Owner: assetDb.Owner,
-      Serial: assetDb.Serial,
-      Type: assetDb.Type,
-      Project: assetDb.Project
-    });
+    // this.assetRef.update( this.currAsset.id,{
+    //   Assignee: assetDb.Assignee,
+    //   Cube: assetDb.Cube,
+    //   Hard_Disk: assetDb.HDD,
+    //   Memory: assetDb.Memory,
+    //   Model: assetDb.Model,
+    //   Number: assetDb.Number,
+    //   OS: assetDb.OS,
+    //   Owner: assetDb.Owner,
+    //   Serial: assetDb.Serial,
+    //   Type: assetDb.Type,
+    //   Project: assetDb.Project
+    // });
 
-    let toast = this.toastCtrl.create({
-      message: "An Asset was updated successfully",
-      duration: 2500,
-      position: "top"
-    });
-    this.navCtrl.pop();
-    toast.present(); this.vibration.vibrate(250);
+    // let toast = this.toastCtrl.create({
+    //   message: "An Asset was updated successfully",
+    //   duration: 2500,
+    //   position: "top"
+    // });
+    // this.navCtrl.pop();
+    // toast.present(); this.vibration.vibrate(250);
   }
 
   updateThing(assetDB: Asset) {
+
+    
     console.log("Old Image = " + this.currAsset.img);
     // console.log("Image = " + this.img);
     var key= Math.floor(Date.now() / 1000);
     
-  const newPics = storage().ref(`Pictures/${key}.jpg`);
+  const newPics = storage().ref(`AssetPics/${key}.jpg`);
 
     if (this.img == undefined){
        console.log("No Image");

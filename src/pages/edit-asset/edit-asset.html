@@ -49,7 +49,7 @@
     </ion-slide>
   
     <ion-slide *ngIf='(img == undefined && deleteserve == false)'>
-      <img [src]='editperson.img'>
+      <img [src]='currAsset.img'>
       <ion-fab right top *ngIf='this.editperson.img != stock' >
         <button ion-fab color="danger" (click)='showConfirmserver(peopleaf)'>
           <ion-icon name="trash"></ion-icon>
@@ -135,6 +135,15 @@
                       
                     </ion-select>
                   </ion-item>
+
+                <ion-item>
+                      <ion-label>Peripherals</ion-label>
+                      <ion-select name='l' [(ngModel)]='assetDb.Peripherals' multiple="true">
+                        <ion-option *ngFor="let p of perip | async" [value]= "p.id" [selected]="p.id == currAsset.Peripheral"> <h2>{{p.Model}}</h2>
+                        </ion-option>
+                        
+                    </ion-select>
+                </ion-item> 
             
                 <button ion-button color="test3" outline align="center">ADD PERIPHERAL</button>
   

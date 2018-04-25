@@ -2,13 +2,14 @@
   <ion-header id='con'>
       <ion-list no-lines >
           <div *ngIf="afAuth.authState | async as authUser">
-        <button ion-item clear (click)="goProfile()" id='con'>
+        <button ion-item clear menuClose (click)="goProfile()" id='con'>
             
                 
             <ion-avatar item-start>
-              <img src = 'assets/imgs/logo.png'>
+                <img [src]='authUser.photoURL' *ngIf='(authUser.photoURL != null)'> <img src='assets/imgs/men.jpg' *ngIf='(authUser.photoURL == null)'>
             </ion-avatar>
             <h2>{{authUser.email}}</h2>
+            <p>User Type: {{authUser.displayName}}</p>
            
         </button>
       </div>

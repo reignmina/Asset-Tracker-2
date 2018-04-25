@@ -11,4 +11,5 @@ export interface Asset {
     Type: string;
     Project: string;
     id: string;
+    Peripherals: string;
   }
