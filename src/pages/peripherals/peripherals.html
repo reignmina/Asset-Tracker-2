@@ -19,7 +19,8 @@
 
 <ion-list>
     <ion-item-sliding *ngFor='let p of periph | async'>
-      <ion-item item-start>
+      <ion-item>
+        <ion-avatar item-start><img [src]='p.img'></ion-avatar>
         <h2>{{p.Type}}</h2>
         <p>{{p.Model}}</p>
         <p>{{p.Number}}</p>

@@ -95,7 +95,7 @@ export class BrandsPage {
               newBrand.set({
                 id: newBrand.key,
                 name: data.name,
-                mxodel: data.model,
+                model: data.model,
               });
               newModel.set({
                 id: newModel.key,

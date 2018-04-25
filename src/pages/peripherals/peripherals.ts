@@ -4,6 +4,7 @@ import { AddPeripheralPage } from '../add-peripheral/add-peripheral';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { Vibration } from '@ionic-native/vibration';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ export class PeripheralsPage {
   periphRef: AngularFireList<any>;
   periph: Observable<any[]>;
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, private alertCtrl: AlertController, private vibration: Vibration, public navParams: NavParams, private menu: MenuController, private afDb: AngularFireDatabase,) {
-    this.periphRef = this.afDb.list('Assets/data/Peripherals  ');      
+    this.periphRef = this.afDb.list('Assets/data/Peripherals');     
     this.periph = this.periphRef.valueChanges();
   }
 

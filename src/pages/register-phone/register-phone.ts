@@ -31,7 +31,6 @@ export class RegisterPhonePage {
 
   peopleRef: AngularFireList<any>;
   creds = {} as RegisterPhone;
-  // public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
   public phoneNumber: number;
   public verificationId: any;
   fpScanner: boolean;
@@ -56,81 +55,16 @@ export class RegisterPhonePage {
     this.password = this.navParams.get('password')
   }
 
-  // ionViewDidLoad() {
-  //   this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-  //     "recaptcha-container",
-  //     { size: "invisible" }
-  //   );
-  //   console.log("ionViewDidLoad RegisterUserPage");
-  // }
-
   ionViewDidEnter() {
     console.log(this.email, this.password);
     this.menu.swipeEnable(false, "left");
     this.menu.swipeEnable(false, "right");
     this.checkAvail();
-    // If you have more than one side menu, use the id like below
-    // this.menu.swipeEnable(false, 'menu1');
   }
 
   ionViewWillLeave() {
-    // Don't forget to return the swipe to normal, otherwise
-    // the rest of the pages won't be able to swipe to open menu
     this.menu.swipeEnable(true);
   }
-
-  // signIn(phoneNumber: number) {
-  //   const appVerifier = this.recaptchaVerifier;
-  //   const phoneNumberString = "+" + phoneNumber;
-  //   console.log(phoneNumberString);
-  //   firebase
-  //     .auth()
-  //     .signInWithPhoneNumber(phoneNumberString, appVerifier)
-  //     .then(confirmationResult => {
-  //       // SMS sent. Prompt user to type the code from the message, then sign the
-  //       // user in with confirmationResult.confirm(code).
-  //       let prompt = this.alertCtrl.create({
-  //         title: "Enter the Confirmation code",
-  //         inputs: [
-  //           { name: "confirmationCode", placeholder: "Confirmation Code" }
-  //         ],
-  //         buttons: [
-  //           {
-  //             text: "Cancel",
-  //             handler: data => {
-  //               console.log("Cancel clicked");
-  //             }
-  //           },
-  //           {
-  //             text: "Send",
-  //             handler: data => {
-  //               confirmationResult
-  //                 .confirm(data.confirmationCode)
-  //                 .then(function(result) {
-  //                   // User signed in successfully.
-  //                   console.log(result.user);
-
-  //                   console.log("AWLA ka Mike");
-
-  //                   // ...
-  //                 })
-  //                 .catch(function(error) {
-  //                   console.log(error);
-  //                   // User couldn't sign in (bad verification code?)
-  //                   // ...
-  //                 });
-  //               this.navCtrl.setRoot(HomePage);
-  //             }
-  //           }
-  //         ]
-  //       });
-
-  //       prompt.present();
-  //     })
-  //     .catch(function(error) {
-  //       console.error("SMS not sent", error);
-  //     });
-  // }
 
   private registerPhone(): void {
     interface Window {

@@ -16,7 +16,7 @@
 <ion-list >
   <ion-item-sliding *ngFor="let a of assets | async">
           <button ion-item clear (click)='viewAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img)'>
-        <ion-thumbnail item-start><img [src]="a.img"></ion-thumbnail>
+        <ion-thumbnail item-start><img [src]="a.img" class='img-responsive'></ion-thumbnail>
         <h2>{{a.Type}} {{a.Model}}</h2>
       <p>{{a.Number}}</p>
       <p>{{a.Serial}}</p>

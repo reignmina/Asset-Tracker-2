@@ -48,7 +48,7 @@ export class AddAssetPage {
     private camera: Camera, 
     private vibration: Vibration,
   ) {
-    this.assetRef = this.afDatabase.list("/Assets");
+    this.assetRef = this.afDatabase.list("/Assets/items");
     this.assets = this.assetRef.valueChanges();
     this.typeRef = this.afDatabase.list("Assets/data/Types");
     this.type = this.typeRef.valueChanges();
