@@ -22,7 +22,7 @@ export class AddAssetPage {
   public assetRef: AngularFireList<any>;
   assets: Observable<any[]>;
   typeRef: AngularFireList<any>;
-  type: Observable<any[]>;
+  types: Observable<any[]>;
   OSRef: AngularFireList<any>;
   OS: Observable<any[]>;
   cubeRef: AngularFireList<any>;
@@ -35,6 +35,9 @@ export class AddAssetPage {
   cust: Observable<any[]>;
   modelsRef: AngularFireList<any>;
   models: Observable<any[]>;
+  peripRef: AngularFireList<any>;
+  perip: Observable<any[]>;
+  img: string;
 
   assetDb = {} as Asset;
 
@@ -51,7 +54,7 @@ export class AddAssetPage {
     this.assetRef = this.afDatabase.list("/Assets/items");
     this.assets = this.assetRef.valueChanges();
     this.typeRef = this.afDatabase.list("Assets/data/Types");
-    this.type = this.typeRef.valueChanges();
+    this.types = this.typeRef.valueChanges();
     this.OSRef = this.afDatabase.list("Assets/data/OS");
     this.OS = this.OSRef.valueChanges();
     this.cubeRef = this.afDatabase.list("Assets/data/Cubes");
@@ -64,6 +67,8 @@ export class AddAssetPage {
     this.cust = this.custRef.valueChanges();
     this.modelsRef = this.afDatabase.list("Assets/data/Models");
     this.models = this.modelsRef.valueChanges();
+    this.peripRef = this.afDatabase.list("Assets/data/Peripherals");
+    this.perip = this.peripRef.valueChanges();
   }
 
   ionViewDidLoad() {
@@ -80,10 +85,11 @@ export class AddAssetPage {
 
   addAsset(assetDb: Asset) {
     const newAsset = this.assetRef.push({});
+    const newId = newAsset.key;
 
     console.log(this.assetDb);
     newAsset.set({
-      id: newAsset.key,
+      id: newId,
       Assignee: assetDb.Assignee,
       Cube: assetDb.Cube,
       Hard_Disk: assetDb.HDD,
@@ -94,8 +100,20 @@ export class AddAssetPage {
       Owner: assetDb.Owner,
       Serial: assetDb.Serial,
       Type: assetDb.Type,
-      Project: assetDb.Project
+      Project: assetDb.Project,
+      Peripherals: assetDb.Peripherals
     });
+
+    if(assetDb.Peripherals.length != 0){
+      for( let i = 0; i < assetDb.Peripherals.length; i++) {
+  
+      
+      this.peripRef.update( assetDb.Peripherals[i],{
+        BindedAsset : newId
+      });
+      }
+    }
+    
 
     let toast = this.toastCtrl.create({
       message: "An Asset was added successfully",
@@ -120,7 +138,7 @@ export class AddAssetPage {
       var key=  Math.floor(Date.now() / 1000);
       const result = await this.camera.getPicture(options);
       const img = `data:image/jpeg;base64,${result}`;
-      const pics = storage().ref('Pictures/' + key);
+      const pics = storage().ref('AssetPics/' + key);
 
     pics.putString(img, 'data_url' );
       

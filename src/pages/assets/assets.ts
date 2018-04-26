@@ -55,15 +55,15 @@ export class AssetsPage {
     this.assets = this.assetRef.valueChanges();
   }
 
-  viewAsset(Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img) {
+  viewAsset(Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img, Peripherals) {
     this.navCtrl.push(ViewAssetPage, {
-      Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img
+      Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img, Peripherals
     });
   }
 
-  editAsset(Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img) {
+  editAsset(Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img, Peripherals) {
     this.navCtrl.push(EditAssetPage, {
-      Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img
+      Assignee, Cube, Hard_Disk, Memory, Model, Number, OS, Owner, Project, Serial, Type, id, img, Peripherals
     });
   }
 

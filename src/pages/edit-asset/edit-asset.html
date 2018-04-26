@@ -138,8 +138,8 @@
 
                 <ion-item>
                       <ion-label>Peripherals</ion-label>
-                      <ion-select name='l' [(ngModel)]='assetDb.Peripherals' multiple="true">
-                        <ion-option *ngFor="let p of perip | async" [value]= "p.id" [selected]="p.id == currAsset.Peripheral"> <h2>{{p.Model}}</h2>
+                      <ion-select name='kkk' [(ngModel)]='assetDb.Peripherals' multiple="true">
+                        <ion-option *ngFor="let p of perip | async" [value]="p.id" [selected]="p.id == currAsset.Peripheral">{{p.Model}}
                         </ion-option>
                         
                     </ion-select>

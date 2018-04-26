@@ -29,7 +29,6 @@
         </ion-slide>
       </ion-slides>
 
-        <form (ngSubmit)="onSubmit()">
       
               <ion-item>
                   <ion-label>Type</ion-label>
@@ -105,7 +104,15 @@
                     
                   </ion-select>
                 </ion-item>
-            </form>
+
+                <ion-item>
+                    <ion-label>Peripherals</ion-label>
+                    <ion-select name='kkk' [(ngModel)]='assetDb.Peripherals' multiple="true">
+                      <ion-option *ngFor="let p of perip | async" [value]="p.id">{{p.Model}}
+                      </ion-option>
+                  </ion-select>
+              </ion-item>
+
               <button ion-button color="test3" outline align="center">ADD PERIPHERAL</button>
 
 </ion-content>

@@ -15,7 +15,7 @@
 <ion-content padding>
 <ion-list >
   <ion-item-sliding *ngFor="let a of assets | async">
-          <button ion-item clear (click)='viewAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img)'>
+          <button ion-item clear (click)='viewAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img, a.Peripherals)'>
         <ion-thumbnail item-start><img [src]="a.img" class='img-responsive'></ion-thumbnail>
         <h2>{{a.Type}} {{a.Model}}</h2>
       <p>{{a.Number}}</p>
@@ -23,7 +23,7 @@
         </button>
 
         <ion-item-options side="right" *ngIf="fafe == 'admin'">
-            <button ion-button color="success" (click)='editAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img)'>
+            <button ion-button color="success" (click)='editAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img, a.Peripherals)'>
                 <ion-icon name="create" ></ion-icon>
                 Edit
               </button>

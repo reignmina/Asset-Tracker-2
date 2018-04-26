@@ -47,8 +47,8 @@ export class EditAssetPage {
   deleteserve: boolean;
   stock: 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
   // currType = this.navParams.get('Type');
-  public currAsset = {Assignee: "", Cube: "", Hard_Disk: "", Memory: "", Model: "",
-  Number: "", OS: "", Owner: "", Project: "", Serial: "", Type: "", id: "", img: ""};
+   currAsset = {Assignee: "", Cube: "", Hard_Disk: "", Memory: "", Model: "",
+  Number: "", OS: "", Owner: "", Project: "", Serial: "", Type: "", id: "", img: "", Peripherals: Array};
   assetDb = {} as Asset;
 
   
@@ -68,7 +68,7 @@ export class EditAssetPage {
       Assignee: navParams.get('Assignee'), Cube: navParams.get('Cube'), Hard_Disk: navParams.get('Hard_Disk'),
        Memory: navParams.get('Memory'), Model: navParams.get('Model'),
      Number: navParams.get('Number'), OS: navParams.get('OS'), Owner: navParams.get('Owner'), Project:navParams.get('Project'), Serial: navParams.get('Serial'),
-      Type: navParams.get('Type'), id: navParams.get('id'), img: navParams.get('img')
+      Type: navParams.get('Type'), id: navParams.get('id'), img: navParams.get('img'), Peripherals: navParams.get("Peripherals")
     };
   
 
@@ -89,7 +89,7 @@ export class EditAssetPage {
     this.modelsRef = this.afDatabase.list("Assets/data/Models");
     this.models = this.modelsRef.valueChanges();
     this.peripRef = this.afDatabase.list("Assets/data/Peripherals");
-    this.perip = this.modelsRef.valueChanges();
+    this.perip = this.peripRef.valueChanges();
   }
 
 
@@ -131,6 +131,9 @@ export class EditAssetPage {
     if(assetDb.Project == null){
       assetDb.Project = this.currAsset.Project;
     }
+    if(assetDb.Peripherals == null){
+      assetDb.Peripherals = this.currAsset.Peripherals;
+    }
 
     
 
@@ -139,28 +142,38 @@ export class EditAssetPage {
     console.log("asset DB");
     console.log(this.assetDb);
     
+    if(assetDb.Peripherals.length != 0){
+    for( let i = 0; i < assetDb.Peripherals.length; i++){
 
-    // this.assetRef.update( this.currAsset.id,{
-    //   Assignee: assetDb.Assignee,
-    //   Cube: assetDb.Cube,
-    //   Hard_Disk: assetDb.HDD,
-    //   Memory: assetDb.Memory,
-    //   Model: assetDb.Model,
-    //   Number: assetDb.Number,
-    //   OS: assetDb.OS,
-    //   Owner: assetDb.Owner,
-    //   Serial: assetDb.Serial,
-    //   Type: assetDb.Type,
-    //   Project: assetDb.Project
-    // });
+    
+    this.peripRef.update( assetDb.Peripherals[i],{
+      BindedAsset : this.currAsset.id
+    });
+    }
+  }
 
-    // let toast = this.toastCtrl.create({
-    //   message: "An Asset was updated successfully",
-    //   duration: 2500,
-    //   position: "top"
-    // });
-    // this.navCtrl.pop();
-    // toast.present(); this.vibration.vibrate(250);
+    this.assetRef.update( this.currAsset.id,{
+      Assignee: assetDb.Assignee,
+      Cube: assetDb.Cube,
+      Hard_Disk: assetDb.HDD,
+      Memory: assetDb.Memory,
+      Model: assetDb.Model,
+      Number: assetDb.Number,
+      OS: assetDb.OS,
+      Owner: assetDb.Owner,
+      Serial: assetDb.Serial,
+      Type: assetDb.Type,
+      Project: assetDb.Project,
+      Peripherals: assetDb.Peripherals
+    });
+
+    let toast = this.toastCtrl.create({
+      message: "An Asset was updated successfully",
+      duration: 2500,
+      position: "top"
+    });
+    this.navCtrl.pop();
+    toast.present(); this.vibration.vibrate(250);
   }
 
   updateThing(assetDB: Asset) {

@@ -10,6 +10,7 @@ export interface Asset {
     Serial: string;
     Type: string;
     Project: string;
+    Peripherals: any;
     id: string;
-    Peripherals: string;
+   
   }
