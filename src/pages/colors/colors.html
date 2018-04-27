@@ -1,0 +1,66 @@
+<!--
+  Generated template for the ColorsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  <ion-title>Select a Color</ion-title>
+</ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-card-content>
+  <ion-list>
+    <ion-item>
+          <ion-avatar (click)="colorRed(tag)">
+          <img src="../../assets/colors/red.jpg">
+          </ion-avatar>
+          Red
+    </ion-item>
+
+    <ion-item>
+
+          <ion-avatar (click)="colorBlue(tag)">
+          <img src="../../assets/colors/blue.jpg">
+          </ion-avatar>
+          Blue
+
+    </ion-item>
+
+    <ion-item>
+
+          <ion-avatar (click)="colorGreen(tag)">
+          <img src="../../assets/colors/green.jpg">
+          Green
+          </ion-avatar>
+    </ion-item>
+
+    <ion-item>
+
+          <ion-avatar (click)="colorPurple(tag)">
+          <img src="../../assets/colors/purple.jpg">
+          </ion-avatar>
+          Purple
+    </ion-item>
+
+    <ion-item>
+
+          <ion-avatar (click)="colorYellow(tag)">
+          <img src="../../assets/colors/yellow.jpg">
+          </ion-avatar>
+          Yellow
+    </ion-item>
+  </ion-list>
+</ion-card-content>
+</ion-card>
+
+  <ion-input class="hide" [(ngModel)]="tag.colorSrc" type="text"></ion-input>
+
+</ion-content>

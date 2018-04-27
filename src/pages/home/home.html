@@ -19,8 +19,8 @@
 
   <div *ngIf="accType == 'admin'">
   <ion-list no-lines *ngFor="let item of items | async">
-    <ion-item > 
-        <button ion-button block large color="test" (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
+    <ion-item >
+        <button ion-button block large color="darkblue" (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
             <h2 class='listtext'>{{item.First_name}} {{item.Middle_name}} {{item.Last_name}}</h2>
         </button>
       </ion-item>
@@ -30,8 +30,8 @@
   <div *ngIf="accType == 'user'">
     <h2>My Assets</h2>
   <ion-list no-lines  *ngFor="let item of assets | async">
-      <ion-item *ngIf="item.Owner == accEmail"> 
-          <button ion-button block large color="test"  (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
+      <ion-item *ngIf="item.Owner == accEmail">
+          <button ion-button block large color="darkblue"  (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
               <h2 class='listtext' >{{item.Model}}</h2>
           </button>
         </ion-item>

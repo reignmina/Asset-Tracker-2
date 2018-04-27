@@ -12,6 +12,7 @@ import { Asset } from "../../models/asset";
 import { storage } from "firebase";
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { Vibration } from "@ionic-native/vibration";
+import { AlertController } from "ionic-angular/components/alert/alert-controller";
 /**
  * Generated class for the EditAssetPage page.
  *
@@ -45,13 +46,14 @@ export class EditAssetPage {
   perip: Observable<any[]>;
   img: string;
   deleteserve: boolean;
-  stock: 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467';
+  stock: "https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467";
   // currType = this.navParams.get('Type');
    currAsset = {Assignee: "", Cube: "", Hard_Disk: "", Memory: "", Model: "",
   Number: "", OS: "", Owner: "", Project: "", Serial: "", Type: "", id: "", img: "", Peripherals: Array};
   assetDb = {} as Asset;
 
-  
+
+
 
 
 
@@ -61,8 +63,9 @@ export class EditAssetPage {
     private menu: MenuController,
     private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController,
-    private camera: Camera, 
+    private camera: Camera,
     private vibration: Vibration,
+    private alertCtrl: AlertController
   ) {
     this.currAsset ={
       Assignee: navParams.get('Assignee'), Cube: navParams.get('Cube'), Hard_Disk: navParams.get('Hard_Disk'),
@@ -70,7 +73,7 @@ export class EditAssetPage {
      Number: navParams.get('Number'), OS: navParams.get('OS'), Owner: navParams.get('Owner'), Project:navParams.get('Project'), Serial: navParams.get('Serial'),
       Type: navParams.get('Type'), id: navParams.get('id'), img: navParams.get('img'), Peripherals: navParams.get("Peripherals")
     };
-  
+
 
     this.assetRef = this.afDatabase.list("/Assets/items");
     this.assets = this.assetRef.valueChanges();
@@ -90,16 +93,19 @@ export class EditAssetPage {
     this.models = this.modelsRef.valueChanges();
     this.peripRef = this.afDatabase.list("Assets/data/Peripherals");
     this.perip = this.peripRef.valueChanges();
+    this.deleteserve = false;
   }
 
 
   ionViewDidLoad() {
+    console.log("this.currAsset");
     console.log(this.currAsset);
+    console.log(this.img)
   }
 
   updateAsset(assetDb: Asset) {
-    
-    
+
+
 
     if(assetDb.Assignee == null){
       assetDb.Assignee = this.currAsset.Assignee;
@@ -135,17 +141,17 @@ export class EditAssetPage {
       assetDb.Peripherals = this.currAsset.Peripherals;
     }
 
-    
+
 
     console.log("Peripherals:");
     console.log(this.assetDb.Peripherals);
     console.log("asset DB");
     console.log(this.assetDb);
-    
+
     if(assetDb.Peripherals.length != 0){
     for( let i = 0; i < assetDb.Peripherals.length; i++){
 
-    
+
     this.peripRef.update( assetDb.Peripherals[i],{
       BindedAsset : this.currAsset.id
     });
@@ -178,27 +184,27 @@ export class EditAssetPage {
 
   updateThing(assetDB: Asset) {
 
-    
+
     console.log("Old Image = " + this.currAsset.img);
     // console.log("Image = " + this.img);
     var key= Math.floor(Date.now() / 1000);
-    
+
   const newPics = storage().ref(`AssetPics/${key}.jpg`);
 
     if (this.img == undefined){
        console.log("No Image");
-      
-      if (this.deleteserve == true){ 
+
+      if (this.deleteserve == true){
         var delPics = storage().refFromURL(this.currAsset.img);
         delPics.delete();
         this.assetRef.update(this.currAsset.id, {
-          
+
           img: 'https://firebasestorage.googleapis.com/v0/b/assettracker-clone.appspot.com/o/Profile%20Pictures%2Ficon.png?alt=media&token=b5d940c5-72ff-4417-9447-fe3bd9480467',
         });
         console.log('Deleted Pic from Server');
       }
   this.assetRef.update(this.currAsset.id, {
-    
+
   });
 }
 
@@ -215,7 +221,6 @@ img: data.downloadURL
 
 else {
 console.log("Has Image to upload but with different image");
-var delPics = storage().refFromURL(this.currAsset.img);
 delPics.delete();
 newPics.putString(this.img, 'data_url' ).then (data =>{
 this.assetRef.update(this.currAsset.id, {
@@ -242,6 +247,73 @@ img: data.downloadURL
 
 
 }
+
+showConfirmserver(assetDB: Asset) {
+  let confirm = this.alertCtrl.create({
+    title: 'Delete?',
+    message: 'Are you sure you want to delete this image?',
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: () => {
+          console.log('ionViewDidLoad PeoplePage');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: () => {
+          console.log (this.deleteserve);
+         this.deleteserve = true;
+         console.log (this.deleteserve);
+
+         let toast = this.toastCtrl.create({
+          message: 'Picture Deleted',
+          duration: 2500,
+          position: 'top'
+        });
+        toast.present(); this.vibration.vibrate(250);
+
+        }
+
+      }
+    ]
+  });
+  confirm.present();
+}
+
+showConfirmlocal() {
+  let confirm = this.alertCtrl.create({
+    title: 'Delete?',
+    message: 'Are you sure you want to delete this image?',
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: () => {
+          console.log('ionViewDidLoad PeoplePage');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: () => {
+          this.img = undefined;
+          console.log('Deleted Pic from local');
+
+          let toast = this.toastCtrl.create({
+            message: 'Picture Deleted',
+            duration: 2500,
+            position: 'top'
+          });
+          toast.present(); this.vibration.vibrate(250);
+          toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+          });
+        }
+      }
+    ]
+  });
+  confirm.present();
+}
+
 async takePic() {
   try {
     const options: CameraOptions = {
@@ -258,7 +330,7 @@ async takePic() {
     const result = await this.camera.getPicture(options);
     this.img = `data:image/jpeg;base64,${result}`;
 
-    
+
   } catch (e) {
     console.error(e);
   }
@@ -280,9 +352,9 @@ async getPic() {
 
     const result = await this.camera.getPicture(options);
     this.img = `data:image/jpeg;base64,${result}`;
-    
 
-    
+
+
   } catch (e) {
     console.error(e);
   }

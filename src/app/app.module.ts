@@ -16,16 +16,16 @@ import { PeripheralsPage } from '../pages/peripherals/peripherals';
 import { TagsPage } from '../pages/tags/tags';
 import { ProjectsPage } from '../pages/projects/projects';
 import { TypesPage } from '../pages/types/types';
-import { BrandsPage } from '../pages/brands/brands'; 
+import { BrandsPage } from '../pages/brands/brands';
 import { CubesPage } from '../pages/cubes/cubes';
 import { OsPage } from '../pages/os/os';
-import { LogsPage } from '../pages/logs/logs'; 
+import { LogsPage } from '../pages/logs/logs';
 import { LoginPage } from '../pages/login/login';
 import { AddPeoplePage } from '../pages/add-people/add-people';
 import { ViewPeoplePage } from '../pages/view-people/view-people';
 import { AddPeripheralPage } from '../pages/add-peripheral/add-peripheral';
 import { AddAssetPage } from '../pages/add-asset/add-asset';
-import { AddTagPage } from '../pages/add-tag/add-tag'; 
+import { AddTagPage } from '../pages/add-tag/add-tag';
 import { EditPeoplePage } from '../pages/edit-people/edit-people';
 import { ViewAssetPage } from "../pages/view-asset/view-asset";
 import { RegisterUserPage } from '../pages/register-user/register-user';
@@ -34,7 +34,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
 import { RegisterPhonePage } from '../pages/register-phone/register-phone';
 import { EditAssetPage } from '../pages/edit-asset/edit-asset';
- 
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule} from '@angular/http';
@@ -47,6 +47,10 @@ import { AppMinimize } from '@ionic-native/app-minimize';
 import { ResetPassPage } from '../pages/reset-pass/reset-pass';
 import { AddCustodianPage } from '../pages/add-custodian/add-custodian';
 import { ViewCustodianPage } from '../pages/view-custodian/view-custodian';
+import { AddTagService } from '../services/add-tag.service';
+import { AddTagsPage } from '../pages/add-tags/add-tags';
+import { EditTagPage } from '../pages/edit-tag/edit-tag';
+import { ColorsPage } from '../pages/colors/colors';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCcKH_nF8-a509y7alvz69L1tuVCO6nkHI",
@@ -76,7 +80,7 @@ export const firebaseConfig = {
     LoginPage,
     AddPeoplePage,
     ViewPeoplePage,
-    AddPeripheralPage, 
+    AddPeripheralPage,
     AddAssetPage,
     AddTagPage,
     EditPeoplePage,
@@ -87,9 +91,12 @@ export const firebaseConfig = {
     ProfileDetailsPage,
     RegisterPhonePage,
     ResetPassPage,
-    EditAssetPage, 
+    EditAssetPage,
     AddCustodianPage,
     ViewCustodianPage,
+    AddTagsPage,
+    EditTagPage,
+    ColorsPage,
 
   ],
   imports: [
@@ -99,7 +106,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -119,7 +126,7 @@ export const firebaseConfig = {
     LoginPage,
     AddPeoplePage,
     ViewPeoplePage,
-    AddPeripheralPage, 
+    AddPeripheralPage,
     AddAssetPage,
     AddTagPage,
     EditPeoplePage,
@@ -133,7 +140,9 @@ export const firebaseConfig = {
     EditAssetPage,
     AddCustodianPage,
     ViewCustodianPage,
-    
+    AddTagsPage,
+    EditTagPage,
+    ColorsPage,
   ],
   providers: [
     StatusBar,
@@ -145,7 +154,8 @@ export const firebaseConfig = {
     FingerprintAIO,
     PhotoViewer,
     Firebase,
-    AppMinimize
+    AppMinimize,
+    AddTagService
   ]
 })
 export class AppModule {}

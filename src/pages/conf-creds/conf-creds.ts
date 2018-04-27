@@ -51,8 +51,8 @@ export class ConfCredsPage {
   approveUser(User, Pass, id,firstname, middlename, lastname, phone, type) {
     console.log(User, Pass);
     let confirm = this.alertCtrl.create({
-      title: "Delete?",
-      message: "Do you really want to delete this Request?",
+      title: "Accept Request?",
+      message: "Do you want to accept this Request?",
       buttons: [
         {
           text: "Cancel",
@@ -68,11 +68,11 @@ export class ConfCredsPage {
               success.updateProfile({
                   displayName: type,
                 })
-                .then(res => 
+                .then(res =>
                   console.log("profile updated"),
                   console.log(success)
 
-                
+
                 )
                 .catch(err => console.log(err));
               });
@@ -118,7 +118,7 @@ export class ConfCredsPage {
           text: "Cancel",
           handler: () => {
             console.log("Prompt Canceled");
-          } 
+          }
         },
         {
           text: "Delete Request",

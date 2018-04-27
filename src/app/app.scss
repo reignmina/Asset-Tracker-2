@@ -13,3 +13,87 @@
 .listtext{
     color: white;
 }
+
+#colorimg{
+  border-radius: 50%;
+}
+
+.alertRed{
+
+  color: white;
+  .alert-message {
+    color: white; // text color for confirm alerts
+}
+
+.alert-wrapper {
+  background-color: color($colors, red, base) // bg color of alert content
+}
+
+button {
+  color: white !important; // button text color
+}
+}
+
+.alertGreen{
+
+  color: white;
+  .alert-message {
+    color: white; // text color for confirm alerts
+}
+
+.alert-wrapper {
+  background-color: color($colors, green, base) // bg color of alert content
+}
+
+button {
+  color: white !important; // button text color
+}
+}
+
+.alertPurple{
+
+  color: white;
+  .alert-message {
+    color: white; // text color for confirm alerts
+}
+
+.alert-wrapper {
+  background-color: color($colors, purple, base) // bg color of alert content
+}
+
+button {
+  color: white !important; // button text color
+}
+}
+
+.alertYellow{
+
+  color: white;
+  .alert-message {
+    color: white; // text color for confirm alerts
+}
+
+.alert-wrapper {
+  background-color: color($colors, yellow, base) // bg color of alert content
+}
+
+button {
+  color: white !important; // button text color
+}
+}
+
+.alertBlue{
+
+  color: white;
+  .alert-message {
+    color: white; // text color for confirm alerts
+}
+
+.alert-wrapper {
+  background-color: color($colors, blue, base) // bg color of alert content
+}
+
+button {
+  color: white !important; // button text color
+}
+}

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>add custodian</ion-title>
+    <ion-title>Add Custodian</ion-title>
     <ion-buttons end>
         <button ion-button icon-only clear (click)='approveUser(this.a)'>
           <ion-icon name="checkmark" color='light'>
@@ -25,19 +25,19 @@
         <ion-label>New Custodian</ion-label>
         <ion-select  name='a' [(ngModel)]='a' interface="popover" >
 
-          
+
             <ion-option *ngFor="let p of (people | async)"  value= {{p.id}}>
-             {{p.EID}}  
+             {{p.EID}}
           </ion-option>
-        
-          
-          
+
+
+
         </ion-select>
 
-        
+
       </ion-item>
 
-      
-  
+
+
 
 </ion-content>

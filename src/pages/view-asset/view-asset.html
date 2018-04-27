@@ -8,16 +8,17 @@
             </ion-icon>
           </button>
         </ion-buttons>
-        
+
     </ion-navbar>
   </ion-header>
- 
+
 
 <ion-content padding align='center'>
 
   <ion-list no-line *ngFor='let a of assets'>
     <ion-thumbnail item-start>
-      <img [src]='a.img' width="350" height="350">
+      <img class="imgBack"[src]='a.img' width="350" height="350">
+      <img class="imgPro"[src]='a.img' width="250" height="250">
     </ion-thumbnail>
     <h2>Type: {{a.Type}}</h2>
     <h2>Model: {{a.Model}}</h2>
@@ -34,16 +35,16 @@
 
     <ion-list no-lines *ngFor=" let p of perip | async">
       <ion-item *ngIf="p.BindedAsset == a.id">
-        {{p.Type}} {{p.Model}}
+        <p class="Cont">{{p.Type}} {{p.Model}}</p>
       </ion-item>
 
     </ion-list>
     <!-- <h2>Peripherals: {{a.Peripherals}}</h2> -->
-    
+
   </ion-list>
 
   <ion-fab right bottom *ngFor="let a of assets">
       <button ion-fab color="secondary" (click)='editAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img, a.Peripherals)'><ion-icon name="create"></ion-icon></button>
-    </ion-fab> 
+    </ion-fab>
 
 </ion-content>

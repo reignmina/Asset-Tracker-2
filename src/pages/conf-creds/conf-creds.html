@@ -8,7 +8,7 @@
           </ion-icon>
         </button>
       </ion-buttons>
-      
+
   </ion-navbar>
 </ion-header>
 
@@ -35,7 +35,7 @@
       </ion-item-options>
     </ion-item-sliding>
 
-    <ion-item *ngIf='(credList | async) == 0' > <h1 align='center' >There are currently no pending requests. </h1></ion-item>
+    <ion-item text-wrap *ngIf='(credList | async) == 0' > <h1 align='center' >There are currently no pending requests. </h1></ion-item>
   </ion-list>
 
 </ion-content>

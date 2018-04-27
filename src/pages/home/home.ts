@@ -45,5 +45,5 @@ export class HomePage {
     this.navCtrl.push(ViewPeoplePage,{firstname:First_name, middlename:Middle_name, lastname:Last_name, eid:EID, img:img})
   }
 
-  
+
 }
